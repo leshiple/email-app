@@ -1,7 +1,7 @@
 <template>
   <div class="q-mx-md row items-center justify-start">
     <div class="text-subtitle1 text-weight-bold">{{$t(titleSlug)}}</div>
-    <q-btn flat round color="grey-6" icon="add" size="10px" class="q-ml-xs" />
+    <q-btn flat round color="grey-6" icon="add" size="10px" class="q-ml-xs" @click="onClick" />
   </div>
 </template>
 
@@ -18,6 +18,13 @@ export default defineComponent({
   },
   emits: {
     click: null,
+  },
+  setup(_props, { emit }) {
+    const onClick = () => emit('click');
+
+    return {
+      onClick,
+    };
   },
 });
 </script>
