@@ -18,25 +18,7 @@ export default defineComponent({
   components: { AppCompose, AppFolders, AppLabels },
   setup() {
     const folders = inject('folders');
-
-    const labels = [
-      {
-        name: 'Freelance',
-        color: 'pink-4',
-      },
-      {
-        name: 'Friends',
-        color: 'teal-4',
-      },
-      {
-        name: 'Social',
-        color: 'blue-4',
-      },
-      {
-        name: 'Support',
-        color: 'brown-4',
-      },
-    ];
+    const labels = inject('labels');
 
     return {
       folders,

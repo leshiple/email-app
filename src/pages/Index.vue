@@ -20,6 +20,7 @@ export default defineComponent({
     const store = useStore(storeKey);
 
     provide('folders', store.state.folders.folders);
+    provide('labels', store.state.labels.labels);
   },
 });
 </script>

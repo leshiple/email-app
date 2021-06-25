@@ -7,9 +7,12 @@ import {
 } from 'vuex';
 import folders from './folders';
 import { IFoldersState } from './folders/state';
+import labels from './labels';
+import { ILabesState } from './labels/state';
 
 export interface IRootState {
   folders: IFoldersState
+  labels: ILabesState
 }
 
 // provide typings for `this.$store`
@@ -26,6 +29,7 @@ export default store((/* { ssrContext } */) => {
   const Store = createStore<IRootState>({
     modules: {
       folders,
+      labels,
     },
     strict: !!process.env.DEBUGGING,
   });
