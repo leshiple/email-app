@@ -6,13 +6,17 @@
       :key="label.name"
       :name="label.name"
       :color="label.color"
+      @edit="onEdit"
     />
   </q-list>
   <app-dialog-add-group
+    v-if="visibleDialog"
     v-model="visibleDialog"
-    :title="$t('addLabel')"
+    :title="$t(currentEditLabelName ? 'editLabel': 'addLabel')"
+    :name="currentEditLabelName"
     :options-title="$t('chooseColor')"
     :options="colors"
+    :current-option="currentEditLabelColor"
     @add="onAdd"
   />
 </template>
@@ -22,7 +26,7 @@ import { defineComponent, ref, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
 import AppDialogAddGroup from 'src/components/AppDialogAddGroup.vue';
 import AppLabelsItem from 'src/components/AppLabelsItem.vue';
-import { ILabel } from 'src/types/Labels.d';
+import { ILabel, IAddLabel, IEditLabel } from 'src/types/Labels.d';
 import { IPayloadAddGroup } from 'src/types/common.d';
 
 const colors = [
@@ -77,21 +81,32 @@ export default defineComponent({
       required: true,
     },
     add: {
-      type: Function as PropType<ILabel>,
+      type: Function as PropType<IAddLabel>,
+      required: true,
+    },
+    edit: {
+      type: Function as PropType<IEditLabel>,
       required: true,
     },
   },
   setup(props) {
     const visibleDialog = ref(false);
-    const currentEditLabel = ref('');
+    const currentEditLabelName = ref('');
+    const currentEditLabelColor = ref('');
 
     const showDialog = () => {
       visibleDialog.value = true;
     };
 
-    const onAdd = (({ newName, group }: IPayloadAddGroup) => {
-      if (currentEditLabel.value) {
-        currentEditLabel.value = '';
+    const onAdd = (({ oldName, newName, group }: IPayloadAddGroup) => {
+      if (currentEditLabelName.value) {
+        props.edit({
+          oldName,
+          newName,
+          color: group,
+        });
+        currentEditLabelName.value = '';
+        currentEditLabelColor.value = '';
       } else {
         props.add({
           name: newName,
@@ -100,11 +115,24 @@ export default defineComponent({
       }
     });
 
+    const onEdit = (name: string) => {
+      const currentLabel = props.labels.find((l) => l.name === name);
+
+      if (currentLabel) {
+        currentEditLabelName.value = name;
+        currentEditLabelColor.value = currentLabel.color;
+        showDialog();
+      }
+    };
+
     return {
       visibleDialog,
       showDialog,
       onAdd,
+      onEdit,
       colors,
+      currentEditLabelName,
+      currentEditLabelColor,
     };
   },
 });

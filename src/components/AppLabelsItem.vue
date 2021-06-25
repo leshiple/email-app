@@ -38,8 +38,8 @@ export default defineComponent({
     delete: null,
   },
   setup(props, { emit }) {
-    const onEdit = () => emit('edit', props.slug);
-    const onDelete = () => emit('delete', props.slug);
+    const onEdit = () => emit('edit', props.name);
+    const onDelete = () => emit('delete', props.name);
 
     return {
       onEdit,

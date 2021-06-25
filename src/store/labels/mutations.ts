@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { ILabel } from 'src/types/Labels.d';
+import { ILabel, IPayloadEditLabel } from 'src/types/Labels.d';
 import { ILabesState } from './state';
 
 export const TYPES = {
@@ -11,6 +11,21 @@ export const TYPES = {
 const mutation: MutationTree<ILabesState> = {
   [TYPES.ADD](state: ILabesState, label: ILabel) {
     state.labels.push(label);
+  },
+  [TYPES.EDIT](state: ILabesState, { oldName, newName, color }: IPayloadEditLabel) {
+    state.labels = state.labels.map((label) => {
+      const isCurrentLabel = label.name === oldName;
+
+      if (isCurrentLabel) {
+        return {
+          ...label,
+          name: newName,
+          color,
+        };
+      }
+
+      return label;
+    });
   },
 };
 

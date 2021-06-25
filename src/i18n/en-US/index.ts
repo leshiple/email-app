@@ -10,6 +10,7 @@ export default {
   addFolder: 'Add folder',
   editFolder: 'Edit folder',
   addLabel: 'Add label',
+  editLabel: 'Edit label',
   chooseColor: 'Choose color',
   name: 'Name',
   add: 'Add',

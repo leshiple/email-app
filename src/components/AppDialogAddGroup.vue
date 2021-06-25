@@ -78,13 +78,20 @@ export default defineComponent({
     options: {
       type: Array as PropType<IOptionGroup[]>,
     },
+    currentOption: {
+      type: String,
+      default: '',
+    },
   },
   emits: {
     'update:modelValue': null,
     add: null,
   },
   setup(props, { emit }) {
-    const groupInitialValue = props.options ? props.options[0].value : '';
+    const groupInitialValue = props.options
+      ? (props.currentOption ? props.currentOption : props.options[0].name)
+      : '';
+
     const group = ref(groupInitialValue);
     const nameGroup = ref(props.name);
     const { emptyString } = useValidations();

@@ -13,7 +13,7 @@ import { useStore } from 'vuex';
 import { storeKey } from 'src/store';
 import AppSidebar from 'src/components/AppSidebar.vue';
 import { IPayloadEditFolder } from 'src/types/Folders.d';
-import { ILabel } from 'src/types/Labels.d';
+import { ILabel, IPayloadEditLabel } from 'src/types/Labels.d';
 
 export default defineComponent({
   name: 'PageIndex',
@@ -31,6 +31,7 @@ export default defineComponent({
 
     provide('labels', labels);
     provide('addLabel', (label: ILabel) => store.dispatch('labels/add', label));
+    provide('editLabel', (payload: IPayloadEditLabel) => store.dispatch('labels/edit', payload));
   },
 });
 </script>
