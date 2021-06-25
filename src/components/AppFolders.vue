@@ -1,5 +1,5 @@
 <template>
-  <app-card-section-header title-slug="folders" />
+  <app-card-section-header title-slug="folders" @click="showDialog" />
   <q-list dense class="q-mb-lg">
     <q-item
       v-for="folder in folders"
@@ -13,12 +13,18 @@
       <q-item-section>{{$t(folder.slug)}}</q-item-section>
     </q-item>
   </q-list>
+  <app-dialog-add-group
+    v-model="visibleDialog"
+    :title="$t('addFolder')"
+    @add="onAdd"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, ref, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
-import { IFolder } from 'src/types/IFolder.d';
+import AppDialogAddGroup from 'src/components/AppDialogAddGroup.vue';
+import { IFolder } from 'src/types/Folders.d';
 
 export default defineComponent({
   name: 'AppFolders',
@@ -30,6 +36,24 @@ export default defineComponent({
   },
   components: {
     AppCardSectionHeader,
+    AppDialogAddGroup,
+  },
+  setup() {
+    const visibleDialog = ref(false);
+
+    const showDialog = () => {
+      visibleDialog.value = true;
+    };
+
+    const onAdd = (({ name }) => {
+      console.log(name);
+    });
+
+    return {
+      visibleDialog,
+      showDialog,
+      onAdd,
+    };
   },
 });
 </script>
