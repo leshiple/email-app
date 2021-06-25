@@ -18,11 +18,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
-
-export interface IFolder {
-  icon: string
-  slug: string
-}
+import { IFolder } from 'src/types/IFolder.d';
 
 export default defineComponent({
   name: 'AppFolders',
