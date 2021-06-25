@@ -13,6 +13,7 @@ import { useStore } from 'vuex';
 import { storeKey } from 'src/store';
 import AppSidebar from 'src/components/AppSidebar.vue';
 import { IPayloadEditFolder } from 'src/types/Folders.d';
+import { ILabel } from 'src/types/Labels.d';
 
 export default defineComponent({
   name: 'PageIndex',
@@ -29,6 +30,7 @@ export default defineComponent({
     provide('deleteFolder', (name: string) => store.dispatch('folders/delete', name));
 
     provide('labels', labels);
+    provide('addLabel', (label: ILabel) => store.dispatch('labels/add', label));
   },
 });
 </script>

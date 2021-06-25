@@ -76,16 +76,28 @@ export default defineComponent({
       type: Array as PropType<ILabel[]>,
       required: true,
     },
+    add: {
+      type: Function as PropType<ILabel>,
+      required: true,
+    },
   },
-  setup() {
+  setup(props) {
     const visibleDialog = ref(false);
+    const currentEditLabel = ref('');
 
     const showDialog = () => {
       visibleDialog.value = true;
     };
 
-    const onAdd = (({ name, group }: IPayloadAddGroup) => {
-      console.log(name, group);
+    const onAdd = (({ newName, group }: IPayloadAddGroup) => {
+      if (currentEditLabel.value) {
+        currentEditLabel.value = '';
+      } else {
+        props.add({
+          name: newName,
+          color: group,
+        });
+      }
     });
 
     return {
