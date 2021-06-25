@@ -12,7 +12,7 @@
         <q-card-section class="q-pb-none">
           <q-input
             outlined
-            v-model="name"
+            v-model="nameGroup"
             :label="$t('name')"
             lazy-rules
             :rules="[emptyString, nameValidator]"
@@ -39,7 +39,7 @@
             class="full-width"
             type="submit"
           >
-            {{$t('add')}}
+            {{$t(name ? 'edit': 'add')}}
           </q-btn>
         </q-card-section>
       </q-form>
@@ -65,6 +65,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+      default: '',
+    },
     nameValidator: {
       type: Function as PropType<IFieldValidator>,
     },
@@ -82,7 +86,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const groupInitialValue = props.options ? props.options[0].value : '';
     const group = ref(groupInitialValue);
-    const name = ref('');
+    const nameGroup = ref(props.name);
     const { emptyString } = useValidations();
 
     const visible = computed({
@@ -98,18 +102,19 @@ export default defineComponent({
       visible.value = false;
 
       emit('add', {
-        name: name.value,
+        oldName: props.name,
+        newName: nameGroup.value,
         group: group.value,
       });
 
-      name.value = '';
+      nameGroup.value = '';
     };
 
     return {
       visible,
       opitons: props.options,
       group,
-      name,
+      nameGroup,
       emptyString,
       onSubmit,
     };

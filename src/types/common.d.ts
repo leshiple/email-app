@@ -5,7 +5,8 @@ export interface IOptionGroup {
 }
 
 export interface IPayloadAddGroup {
-  name: string
+  oldName: string
+  newName: string
   group: string
 }
 

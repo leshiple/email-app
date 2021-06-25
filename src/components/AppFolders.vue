@@ -1,21 +1,21 @@
 <template>
   <app-card-section-header title-slug="folders" @click="showDialog" />
   <q-list dense class="q-mb-lg">
-    <q-item
+    <app-folders-item
       v-for="folder in folders"
       :key="folder.slug"
-      clickable
-      v-ripple
-    >
-      <q-item-section avatar>
-        <q-icon color="grey-8" :name="folder.icon" />
-      </q-item-section>
-      <q-item-section>{{$t(folder.slug)}}</q-item-section>
-    </q-item>
+      :slug="folder.slug"
+      :icon="folder.icon"
+      :type="folder.type"
+      @edit="onEdit"
+      @delete="onDelete"
+    />
   </q-list>
   <app-dialog-add-group
+    v-if="visibleDialog"
     v-model="visibleDialog"
-    :title="$t('addFolder')"
+    :title="$t(currentEditFolder ? 'editFolder' : 'addFolder')"
+    :name="currentEditFolder"
     :name-validator="existFolder"
     @add="onAdd"
   />
@@ -24,10 +24,13 @@
 <script lang="ts">
 import { defineComponent, ref, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
+import AppFoldersItem from 'src/components/AppFoldersItem.vue';
 import AppDialogAddGroup from 'src/components/AppDialogAddGroup.vue';
 import useValidations from 'src/composables/useValidionRules';
-import { IFolder, IAddFolder } from 'src/types/Folders.d';
-import { IPayloadGroup } from 'src/type/Common';
+import {
+  IFolder, IAddFolder, IEditFolder, IDeleteFolder,
+} from 'src/types/Folders.d';
+import { IPayloadAddGroup } from 'src/types/common.d';
 
 export default defineComponent({
   name: 'AppFolders',
@@ -40,28 +43,58 @@ export default defineComponent({
       type: Function as PropType<IAddFolder>,
       required: true,
     },
+    edit: {
+      type: Function as PropType<IEditFolder>,
+      required: true,
+    },
+    delete: {
+      type: Function as PropType<IDeleteFolder>,
+      required: true,
+    },
   },
   components: {
     AppCardSectionHeader,
     AppDialogAddGroup,
+    AppFoldersItem,
   },
   setup(props) {
     const visibleDialog = ref(false);
+    const currentEditFolder = ref('');
     const { existFolder } = useValidations();
 
     const showDialog = () => {
       visibleDialog.value = true;
     };
 
-    const onAdd = (({ name }: IPayloadGroup) => {
-      props.add(name);
+    const onAdd = (({ oldName, newName }: IPayloadAddGroup) => {
+      if (currentEditFolder.value) {
+        props.edit({
+          oldName,
+          newName,
+        });
+        currentEditFolder.value = '';
+      } else {
+        props.add(newName);
+      }
     });
+
+    const onEdit = (name: string) => {
+      currentEditFolder.value = name;
+      showDialog();
+    };
+
+    const onDelete = (name: string) => {
+      props.delete(name);
+    };
 
     return {
       visibleDialog,
       showDialog,
       onAdd,
+      onEdit,
+      onDelete,
       existFolder,
+      currentEditFolder,
     };
   },
 });

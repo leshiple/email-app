@@ -10,22 +10,27 @@ function state(): IFoldersState {
       {
         slug: 'inbox',
         icon: 'mail',
+        type: 'system',
       },
       {
         slug: 'starred',
         icon: 'star',
+        type: 'system',
       },
       {
         slug: 'draft',
         icon: 'drafts',
+        type: 'system',
       },
       {
         slug: 'sent',
         icon: 'send',
+        type: 'system',
       },
       {
         slug: 'trash',
         icon: 'delete',
+        type: 'system',
       },
     ],
   };
