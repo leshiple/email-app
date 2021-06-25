@@ -1,7 +1,10 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful',
+  compose: 'Compose',
+  folders: 'Folders',
+  inbox: 'Inbox',
+  starred: 'Starred',
+  draft: 'Draft',
+  sent: 'Sent mail',
+  trash: 'Trash',
+  labels: 'Labels',
 };
