@@ -27,6 +27,9 @@ const mutation: MutationTree<ILabesState> = {
       return label;
     });
   },
+  [TYPES.DELETE](state: ILabesState, name: string) {
+    state.labels = state.labels.filter((l) => l.name !== name);
+  },
 };
 
 export default mutation;

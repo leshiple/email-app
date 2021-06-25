@@ -7,6 +7,7 @@
       :name="label.name"
       :color="label.color"
       @edit="onEdit"
+      @delete="onDelete"
     />
   </q-list>
   <app-dialog-add-group
@@ -26,7 +27,9 @@ import { defineComponent, ref, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
 import AppDialogAddGroup from 'src/components/AppDialogAddGroup.vue';
 import AppLabelsItem from 'src/components/AppLabelsItem.vue';
-import { ILabel, IAddLabel, IEditLabel } from 'src/types/Labels.d';
+import {
+  ILabel, IAddLabel, IEditLabel, IDeleteLabel,
+} from 'src/types/Labels.d';
 import { IPayloadAddGroup } from 'src/types/common.d';
 
 const colors = [
@@ -88,6 +91,10 @@ export default defineComponent({
       type: Function as PropType<IEditLabel>,
       required: true,
     },
+    delete: {
+      type: Function as PropType<IDeleteLabel>,
+      required: true,
+    },
   },
   setup(props) {
     const visibleDialog = ref(false);
@@ -125,11 +132,16 @@ export default defineComponent({
       }
     };
 
+    const onDelete = (name: string) => {
+      props.delete(name);
+    };
+
     return {
       visibleDialog,
       showDialog,
       onAdd,
       onEdit,
+      onDelete,
       colors,
       currentEditLabelName,
       currentEditLabelColor,

@@ -3,7 +3,7 @@
     <app-compose />
     <app-folders :folders="folders" :add="addFolder" :edit="editFolder" :delete="deleteFolder" />
     <q-separator inset class="q-mb-md" />
-    <app-labels :labels="labels" :add="addLabel" :edit="editLabel" />
+    <app-labels :labels="labels" :add="addLabel" :edit="editLabel" :delete="deleteLabel" />
   </q-card>
 </template>
 
@@ -24,6 +24,7 @@ export default defineComponent({
     const labels = inject('labels');
     const addLabel = inject('addLabel');
     const editLabel = inject('editLabel');
+    const deleteLabel = inject('deleteLabel');
 
     return {
       folders,
@@ -33,6 +34,7 @@ export default defineComponent({
       labels,
       addLabel,
       editLabel,
+      deleteLabel,
     };
   },
 });

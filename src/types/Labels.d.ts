@@ -11,3 +11,4 @@ export interface IPayloadEditLabel {
 
 export type IAddLabel = (label: ILabel) => void // eslint-disable-line
 export type IEditLabel = (payload: IPayloadEditLabel) => void // eslint-disable-line
+export type IDeleteLabel = (name: string) => void // eslint-disable-line

@@ -11,6 +11,9 @@ const actions: ActionTree<ILabesState, IRootState> = {
   edit({ commit }, payload: IPayloadEditLabel) {
     commit(TYPES.EDIT, payload);
   },
+  delete({ commit }, name: string) {
+    commit(TYPES.DELETE, name);
+  },
 };
 
 export default actions;

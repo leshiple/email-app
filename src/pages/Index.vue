@@ -32,6 +32,7 @@ export default defineComponent({
     provide('labels', labels);
     provide('addLabel', (label: ILabel) => store.dispatch('labels/add', label));
     provide('editLabel', (payload: IPayloadEditLabel) => store.dispatch('labels/edit', payload));
+    provide('deleteLabel', (name: string) => store.dispatch('labels/delete', name));
   },
 });
 </script>
