@@ -1,17 +1,12 @@
 <template>
   <app-card-section-header title-slug="labels" @click="showDialog" />
   <q-list dense>
-    <q-item
+    <app-labels-item
       v-for="label in labels"
       :key="label.name"
-      clickable
-      v-ripple
-    >
-      <q-item-section>{{ label.name }}</q-item-section>
-      <q-item-section avatar>
-        <q-icon :color="label.color" name="play_circle_filled" size="xs" />
-      </q-item-section>
-    </q-item>
+      :name="label.name"
+      :color="label.color"
+    />
   </q-list>
   <app-dialog-add-group
     v-model="visibleDialog"
@@ -26,6 +21,7 @@
 import { defineComponent, ref, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
 import AppDialogAddGroup from 'src/components/AppDialogAddGroup.vue';
+import AppLabelsItem from 'src/components/AppLabelsItem.vue';
 import { ILabel } from 'src/types/Labels.d';
 import { IPayloadAddGroup } from 'src/types/common.d';
 
@@ -72,6 +68,7 @@ export default defineComponent({
   name: 'AppLabels',
   components: {
     AppCardSectionHeader,
+    AppLabelsItem,
     AppDialogAddGroup,
   },
   props: {
