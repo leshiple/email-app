@@ -16,6 +16,7 @@
   <app-dialog-add-group
     v-model="visibleDialog"
     :title="$t('addFolder')"
+    :name-validator="existFolder"
     @add="onAdd"
   />
 </template>
@@ -24,7 +25,9 @@
 import { defineComponent, ref, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
 import AppDialogAddGroup from 'src/components/AppDialogAddGroup.vue';
-import { IFolder } from 'src/types/Folders.d';
+import useValidations from 'src/composables/useValidionRules';
+import { IFolder, IAddFolder } from 'src/types/Folders.d';
+import { IPayloadGroup } from 'src/type/Common';
 
 export default defineComponent({
   name: 'AppFolders',
@@ -33,26 +36,32 @@ export default defineComponent({
       type: Array as PropType<IFolder[]>,
       required: true,
     },
+    add: {
+      type: Function as PropType<IAddFolder>,
+      required: true,
+    },
   },
   components: {
     AppCardSectionHeader,
     AppDialogAddGroup,
   },
-  setup() {
+  setup(props) {
     const visibleDialog = ref(false);
+    const { existFolder } = useValidations();
 
     const showDialog = () => {
       visibleDialog.value = true;
     };
 
-    const onAdd = (({ name }) => {
-      console.log(name);
+    const onAdd = (({ name }: IPayloadGroup) => {
+      props.add(name);
     });
 
     return {
       visibleDialog,
       showDialog,
       onAdd,
+      existFolder,
     };
   },
 });

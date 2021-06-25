@@ -1,7 +1,7 @@
 import { IFolder } from 'src/types/Folders.d';
 
 export interface IFoldersState {
-  folders: IFolder[];
+  folders: IFolder[]
 }
 
 function state(): IFoldersState {

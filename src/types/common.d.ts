@@ -8,3 +8,6 @@ export interface IPayloadAddGroup {
   name: string
   group: string
 }
+
+// eslint-disable-next-line
+export type IFieldValidator = (val: string | number) => boolean

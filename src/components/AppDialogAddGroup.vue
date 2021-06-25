@@ -15,7 +15,7 @@
             v-model="name"
             :label="$t('name')"
             lazy-rules
-            :rules="[emptyString]"
+            :rules="[emptyString, nameValidator]"
           />
         </q-card-section>
         <q-card-section v-if="options">
@@ -52,7 +52,7 @@ import {
   defineComponent, computed, ref, PropType,
 } from 'vue';
 import useValidations from 'src/composables/useValidionRules';
-import { IOptionGroup } from 'src/types/common';
+import { IOptionGroup, IFieldValidator } from 'src/types/common';
 
 export default defineComponent({
   name: 'AppDialogAddLabel',
@@ -64,6 +64,9 @@ export default defineComponent({
     title: {
       type: String,
       required: true,
+    },
+    nameValidator: {
+      type: Function as PropType<IFieldValidator>,
     },
     optionsTitle: {
       type: String,
@@ -98,6 +101,8 @@ export default defineComponent({
         name: name.value,
         group: group.value,
       });
+
+      name.value = '';
     };
 
     return {

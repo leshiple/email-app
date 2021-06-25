@@ -13,6 +13,7 @@ export default {
   name: 'Name',
   add: 'Add',
   fieldRequired: 'This field is required',
+  folderExist: 'Folder with this name is exist',
   pink: 'Pink',
   red: 'Red',
   yellow: 'Yellow',

@@ -1,7 +1,7 @@
 <template>
   <q-card style="width: 230px" class="q-pb-md">
     <app-compose />
-    <app-folders :folders="folders" />
+    <app-folders :folders="folders" :add="addFolder" />
     <q-separator inset class="q-mb-md" />
     <app-labels :labels="labels" />
   </q-card>
@@ -18,11 +18,13 @@ export default defineComponent({
   components: { AppCompose, AppFolders, AppLabels },
   setup() {
     const folders = inject('folders');
+    const addFolder = inject('addFolder');
     const labels = inject('labels');
 
     return {
       folders,
       labels,
+      addFolder,
     };
   },
 });

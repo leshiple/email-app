@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from 'vue';
+import { defineComponent, computed, provide } from 'vue';
 import { useStore } from 'vuex';
 import { storeKey } from 'src/store';
 import AppSidebar from 'src/components/AppSidebar.vue';
@@ -19,8 +19,12 @@ export default defineComponent({
   setup() {
     const store = useStore(storeKey);
 
-    provide('folders', store.state.folders.folders);
-    provide('labels', store.state.labels.labels);
+    const folders = computed(() => store.state.folders.folders);
+    const labels = computed(() => store.state.labels.labels);
+
+    provide('folders', folders);
+    provide('addFolder', (name: string) => store.dispatch('folders/add', name));
+    provide('labels', labels);
   },
 });
 </script>
