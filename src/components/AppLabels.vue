@@ -18,11 +18,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import AppCardSectionHeader from 'src/components/AppCardSectionHeader.vue';
-
-export interface ILabel {
-  name: string
-  color: string
-}
+import { ILabel } from 'src/types/Labels.d';
 
 export default defineComponent({
   name: 'AppLabels',
