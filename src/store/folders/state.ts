@@ -1,10 +1,33 @@
+import { IFolder } from 'src/types/Folders.d';
+
 export interface IFoldersState {
-  prop: boolean;
+  folders: IFolder[];
 }
 
 function state(): IFoldersState {
   return {
-    prop: false,
+    folders: [
+      {
+        slug: 'inbox',
+        icon: 'mail',
+      },
+      {
+        slug: 'starred',
+        icon: 'star',
+      },
+      {
+        slug: 'draft',
+        icon: 'drafts',
+      },
+      {
+        slug: 'sent',
+        icon: 'send',
+      },
+      {
+        slug: 'trash',
+        icon: 'delete',
+      },
+    ],
   };
 }
 

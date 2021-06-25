@@ -2,7 +2,7 @@ import { MutationTree } from 'vuex';
 import { IFoldersState } from './state';
 
 const mutation: MutationTree<IFoldersState> = {
-  someMutation(/* state: ExampleStateInterface */) {
+  someMutation() {
     // your code
   },
 };

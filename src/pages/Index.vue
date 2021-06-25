@@ -8,11 +8,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, provide } from 'vue';
+import { useStore } from 'vuex';
+import { storeKey } from 'src/store';
 import AppSidebar from 'src/components/AppSidebar.vue';
 
 export default defineComponent({
   name: 'PageIndex',
   components: { AppSidebar },
+  setup() {
+    const store = useStore(storeKey);
+
+    provide('folders', store.state.folders.folders);
+  },
 });
 </script>

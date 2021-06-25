@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import AppCompose from 'src/components/AppCompose.vue';
 import AppFolders from 'src/components/AppFolders.vue';
 import AppLabels from 'src/components/AppLabels.vue';
@@ -17,28 +17,7 @@ export default defineComponent({
   name: 'AppSidebar',
   components: { AppCompose, AppFolders, AppLabels },
   setup() {
-    const folders = [
-      {
-        slug: 'inbox',
-        icon: 'mail',
-      },
-      {
-        slug: 'starred',
-        icon: 'star',
-      },
-      {
-        slug: 'draft',
-        icon: 'drafts',
-      },
-      {
-        slug: 'sent',
-        icon: 'send',
-      },
-      {
-        slug: 'trash',
-        icon: 'delete',
-      },
-    ];
+    const folders = inject('folders');
 
     const labels = [
       {
