@@ -34,7 +34,7 @@ export default defineComponent({
     },
     enableContext: {
       type: Boolean,
-      defalut: true,
+      default: true,
     },
   },
   components: {
