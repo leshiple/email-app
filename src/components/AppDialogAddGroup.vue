@@ -38,6 +38,8 @@
             color='primary'
             class="full-width"
             type="submit"
+            unelevated
+            size="lg"
           >
             {{$t(name ? 'edit': 'add')}}
           </q-btn>

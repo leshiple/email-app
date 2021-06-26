@@ -1,5 +1,5 @@
 <template>
-  <q-btn-dropdown unelevated dense color="secondary" :label="$t('more')" class="q-mr-sm">
+  <q-btn-dropdown unelevated color="secondary" :label="$t('more')" class="q-mr-sm">
     <q-list dense style="min-width: 130px">
       <q-item
         v-for="item in items"

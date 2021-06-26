@@ -1,5 +1,5 @@
 <template>
-  <q-btn-dropdown unelevated dense color="secondary" icon="folder" class="q-mr-sm">
+  <q-btn-dropdown unelevated color="secondary" icon="folder" class="q-mr-sm">
     <q-list dense style="min-width: 130px">
       <app-folders-item
         v-for="folder in folders"

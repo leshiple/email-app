@@ -3,6 +3,7 @@
     clickable
     v-ripple
     v-close-popup
+    class="text-grey-8"
   >
     <q-item-section>{{ name }}</q-item-section>
     <q-item-section avatar>

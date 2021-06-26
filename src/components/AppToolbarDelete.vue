@@ -1,5 +1,5 @@
 <template>
-  <q-btn unelevated dense color="secondary" icon="delete" class="q-mr-sm" />
+  <q-btn unelevated color="secondary" icon="delete" class="q-mr-sm" />
 </template>
 
 <script lang="ts">

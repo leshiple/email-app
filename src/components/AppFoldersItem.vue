@@ -3,10 +3,10 @@
     clickable
     v-ripple
     v-close-popup
-    class="folders-item"
+    class="folders-item text-grey-8"
   >
     <q-item-section avatar>
-      <q-icon color="grey-8" :name="icon" />
+      <q-icon :name="icon" size="xs" />
     </q-item-section>
     <q-item-section>{{$t(slug)}}</q-item-section>
     <app-group-item-context-menu
