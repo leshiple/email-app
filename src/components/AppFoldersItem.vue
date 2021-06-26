@@ -2,13 +2,15 @@
   <q-item
     clickable
     v-ripple
+    v-close-popup
+    class="folders-item"
   >
     <q-item-section avatar>
       <q-icon color="grey-8" :name="icon" />
     </q-item-section>
     <q-item-section>{{$t(slug)}}</q-item-section>
     <app-group-item-context-menu
-      v-if="type !== 'system'"
+      v-if="type !== 'system' && enableContext"
       @edit="onEdit"
       @delete="onDelete"
     />
@@ -35,6 +37,10 @@ export default defineComponent({
       type: String as PropType<IFolderType>,
       required: true,
     },
+    enableContext: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: {
     AppGroupItemContextMenu,
@@ -54,3 +60,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+ .folders-item .q-item__section--avatar {
+   min-width: 1em;
+ }
+</style>

@@ -3,6 +3,7 @@
     <h1 class="text-h5">Email app</h1>
     <div class="row items-start q-gutter-md">
       <app-sidebar />
+      <app-main />
     </div>
   </q-page>
 </template>
@@ -12,12 +13,13 @@ import { defineComponent, computed, provide } from 'vue';
 import { useStore } from 'vuex';
 import { storeKey } from 'src/store';
 import AppSidebar from 'src/components/AppSidebar.vue';
+import AppMain from 'src/components/AppMain.vue';
 import { IPayloadEditFolder } from 'src/types/Folders.d';
 import { ILabel, IPayloadEditLabel } from 'src/types/Labels.d';
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { AppSidebar },
+  components: { AppSidebar, AppMain },
   setup() {
     const store = useStore(storeKey);
 

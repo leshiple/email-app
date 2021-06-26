@@ -2,12 +2,14 @@
   <q-item
     clickable
     v-ripple
+    v-close-popup
   >
     <q-item-section>{{ name }}</q-item-section>
     <q-item-section avatar>
       <q-icon :color="color" name="play_circle_filled" size="xs" />
     </q-item-section>
     <app-group-item-context-menu
+      v-if="enableContext"
       @edit="onEdit"
       @delete="onDelete"
     />
@@ -28,6 +30,10 @@ export default defineComponent({
     color: {
       type: String,
       required: true,
+    },
+    enableContext: {
+      type: Boolean,
+      defalut: true,
     },
   },
   components: {
