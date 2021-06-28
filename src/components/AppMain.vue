@@ -20,28 +20,7 @@ export default defineComponent({
   setup() {
     const folders = inject('folders');
     const labels = inject('labels');
-    const branches = [
-      {
-        id: 'asdfasdf',
-        lastMessageAuthor: 'Peter',
-        subject: 'Holiday',
-        count: 14,
-        date: 'Mar 3',
-        labels: [],
-        starred: true,
-        folder: 'inbox',
-      },
-      {
-        id: 'gasdf',
-        lastMessageAuthor: 'Me',
-        subject: 'Sale car',
-        count: 9,
-        date: 'May 19',
-        labels: [],
-        starred: false,
-        folder: 'inbox',
-      },
-    ];
+    const branches = inject('branches');
 
     return {
       folders,

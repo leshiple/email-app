@@ -9,10 +9,13 @@ import folders from './folders';
 import { IFoldersState } from './folders/state';
 import labels from './labels';
 import { ILabesState } from './labels/state';
+import branches from './branches';
+import { IBranchState } from './branches/state';
 
 export interface IRootState {
   folders: IFoldersState
   labels: ILabesState
+  branches: IBranchState
 }
 
 // provide typings for `this.$store`
@@ -30,6 +33,7 @@ export default store((/* { ssrContext } */) => {
     modules: {
       folders,
       labels,
+      branches,
     },
     strict: !!process.env.DEBUGGING,
   });

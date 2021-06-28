@@ -25,6 +25,7 @@ export default defineComponent({
 
     const folders = computed(() => store.state.folders.folders);
     const labels = computed(() => store.state.labels.labels);
+    const branches = computed(() => store.state.branches.branches);
 
     provide('folders', folders);
     provide('addFolder', (name: string) => store.dispatch('folders/add', name));
@@ -35,6 +36,8 @@ export default defineComponent({
     provide('addLabel', (label: ILabel) => store.dispatch('labels/add', label));
     provide('editLabel', (payload: IPayloadEditLabel) => store.dispatch('labels/edit', payload));
     provide('deleteLabel', (name: string) => store.dispatch('labels/delete', name));
+
+    provide('branches', branches);
   },
 });
 </script>
