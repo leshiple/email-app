@@ -1,17 +1,22 @@
 <template>
   <q-list>
-    <app-branch-list-item
+    <router-link
       v-for="branch in branches"
       :key="branch.id"
-      v-model="checked"
-      :id="branch.id"
-      :last-message-author="branch.lastMessageAuthor"
-      :subject="branch.subject"
-      :count="branch.count"
-      :date="branch.date"
-      :labels="branch.labels"
-      :starred="branch.starred"
-    />
+      :to="branch.id"
+      style="color:inherit;text-decoration:none;"
+    >
+      <app-branch-list-item
+        v-model="checked"
+        :id="branch.id"
+        :last-message-author="branch.lastMessageAuthor"
+        :subject="branch.subject"
+        :count="branch.count"
+        :date="branch.date"
+        :labels="branch.labels"
+        :starred="branch.starred"
+      />
+    </router-link>
   </q-list>
 </template>
 

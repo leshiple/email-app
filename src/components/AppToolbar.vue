@@ -1,6 +1,6 @@
 <template>
   <q-card-section>
-    <app-toolbar-check />
+    <slot />
     <app-toolbar-labels :labels="labels" />
     <app-toolbar-folders :folders="folders" />
     <app-toolbar-delete />
@@ -10,7 +10,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import AppToolbarCheck from 'src/components/AppToolbarCheck.vue';
 import AppToolbarFolders from 'src/components/AppToolbarFolders.vue';
 import AppToolbarLabels from 'src/components/AppToolbarLabels.vue';
 import AppToolbarDelete from 'src/components/AppToolbarDelete.vue';
@@ -31,7 +30,6 @@ export default defineComponent({
     },
   },
   components: {
-    AppToolbarCheck,
     AppToolbarFolders,
     AppToolbarLabels,
     AppToolbarDelete,

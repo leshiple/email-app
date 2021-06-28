@@ -1,20 +1,22 @@
 <template>
-  <q-card style="flex-grow: 1">
-    <app-toolbar :folders="folders" :labels="labels"/>
-    <q-separator inset class="q-mb-md" />
-    <app-branch-list :branches="branches" />
-  </q-card>
+  <app-toolbar :folders="folders" :labels="labels">
+    <app-toolbar-check />
+  </app-toolbar>
+  <q-separator inset class="q-mb-md" />
+  <app-branch-list :branches="branches" />
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
 import AppToolbar from 'src/components/AppToolbar.vue';
+import AppToolbarCheck from 'src/components/AppToolbarCheck.vue';
 import AppBranchList from 'src/components/AppBranchList.vue';
 
 export default defineComponent({
-  name: 'AppMain',
+  name: 'PageBranches',
   components: {
     AppToolbar,
+    AppToolbarCheck,
     AppBranchList,
   },
   setup() {

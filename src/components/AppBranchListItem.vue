@@ -1,5 +1,6 @@
 <template>
     <q-item
+      class="branch-list-item"
       :class="{'bg-grey-2': isActive}"
       clickable
     >
