@@ -1,5 +1,5 @@
 <template>
-  <q-card style="width: 230px" class="q-pb-md">
+  <q-card style="width: 230px;flex-shrink:0" class="q-pb-md">
     <app-compose />
     <app-folders :folders="folders" :add="addFolder" :edit="editFolder" :delete="deleteFolder" />
     <q-separator inset class="q-mb-md" />
