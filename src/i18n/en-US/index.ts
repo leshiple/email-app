@@ -27,6 +27,8 @@ export default {
   removeStar: 'Remove star',
   fieldRequired: 'This field is required',
   folderExist: 'Folder with this name is exist',
+  subject: 'Subject',
+  me: 'Me',
   pink: 'Pink',
   red: 'Red',
   yellow: 'Yellow',
