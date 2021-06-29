@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-px-xl q-py-lg bg-grey-2">
     <h1 class="text-h5">Email app</h1>
-    <div class="row items-start q-gutter-md">
+    <div class="row items-start q-gutter-md no-wrap">
       <app-sidebar />
       <q-card style="flex-grow: 1">
         <router-view />
