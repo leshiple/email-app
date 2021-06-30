@@ -4,6 +4,8 @@
     v-ripple
     v-close-popup
     class="folders-item text-grey-8"
+    :active="active"
+    active-class="bg-grey-2"
   >
     <q-item-section avatar>
       <q-icon :name="icon" size="xs" />
@@ -25,6 +27,10 @@ import { IFolderType } from 'src/types/Folders.d';
 export default defineComponent({
   name: 'AppFoldersItem.vue',
   props: {
+    active: {
+      type: Boolean,
+      required: true,
+    },
     icon: {
       type: String,
       required: true,
