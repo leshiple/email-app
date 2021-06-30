@@ -21,13 +21,14 @@
           :key="label.name"
           size="xs"
           :color="label.color"
+          style="width: 100%"
         >
           {{label.name}}
         </q-chip>
       </q-item-section>
 
       <q-item-section>
-        <q-item-label>{{ lastMessageAuthor }} ({{count}})</q-item-label>
+        <q-item-label>{{ authorName }} ({{count}})</q-item-label>
       </q-item-section>
       <q-item-section>
         <q-item-label>{{ subject }}</q-item-label>
@@ -39,7 +40,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue';
+import {
+  defineComponent, computed, PropType,
+} from 'vue';
+import useAuthorName from 'src/composables/useAuthorName';
 import { ILabel } from 'src/types/Labels';
 
 export default defineComponent({
@@ -91,9 +95,12 @@ export default defineComponent({
       },
     });
 
+    const authorName = useAuthorName(props.lastMessageAuthor);
+
     const isActive = computed(() => props.modelValue.indexOf(props.id) !== -1);
 
     return {
+      authorName,
       checked,
       isActive,
     };
