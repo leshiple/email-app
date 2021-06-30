@@ -1,5 +1,5 @@
 <template>
-  <app-toolbar :folders="folders" :labels="labels">
+  <app-toolbar :folders="folders" :labels="allLabels">
     <app-go-back />
   </app-toolbar>
   <q-separator inset class="q-mb-md" />
@@ -17,11 +17,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import {
+  defineComponent, inject, computed,
+} from 'vue';
+import { useRoute } from 'vue-router';
 import AppToolbar from 'src/components/AppToolbar.vue';
 import AppGoBack from 'src/components/AppGoBack.vue';
 import AppBranchMeta from 'src/components/AppBranchMeta.vue';
 import AppMail from 'src/components/AppMail.vue';
+import { IBranchExtended } from 'src/types/Branches.d';
+
+type F = (folderName: string) => IBranchExtended //eslint-disable-line
 
 export default defineComponent({
   name: 'PageBranch',
@@ -32,30 +38,22 @@ export default defineComponent({
     AppMail,
   },
   setup() {
+    const route = useRoute();
     const folders = inject('folders');
-    const labels = inject('labels');
-    const subject = 'Sale car';
+    const allLabels = inject('labels');
+    const branchById = inject('branchById') as F;
 
-    const mails = [
-      {
-        id: 'asdf',
-        author: 'Peter',
-        date: 'Mar 3',
-        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      },
-      {
-        id: 'aadf',
-        author: 'me',
-        date: 'Mar 2',
-        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      },
-    ];
+    const branch = computed(() => {
+      const branchId = route.params.branch.toString();
+      return branchById(branchId);
+    });
 
     return {
       folders,
-      labels,
-      subject,
-      mails,
+      allLabels,
+      labels: branch.value.labels,
+      subject: branch.value.subject,
+      mails: branch.value.mails,
     };
   },
 });
