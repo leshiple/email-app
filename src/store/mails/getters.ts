@@ -3,8 +3,8 @@ import { IRootState } from '../index';
 import { IMailsState } from './state';
 
 const getters: GetterTree<IMailsState, IRootState> = {
-  someAction(/* context */) {
-    // your code
+  byBranch(state) {
+    return (branch: string) => state.mails.filter((mail) => mail.branch === branch);
   },
 };
 
