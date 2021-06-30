@@ -26,7 +26,6 @@ export default defineComponent({
 
     const folders = computed(() => store.state.folders.folders);
     const labels = computed(() => store.state.labels.labels);
-    const branches = computed(() => store.state.branches.branches);
 
     provide('folders', folders);
     provide('addFolder', (name: string) => store.dispatch('folders/add', name));
@@ -38,7 +37,10 @@ export default defineComponent({
     provide('editLabel', (payload: IPayloadEditLabel) => store.dispatch('labels/edit', payload));
     provide('deleteLabel', (name: string) => store.dispatch('labels/delete', name));
 
-    provide('branches', branches);
+    provide('starredBranches', computed(() => store.getters['branches/starred'])); //eslint-disable-line
+    provide('branchesByFolder', store.getters['branches/byFolder']); //eslint-disable-line
+    provide('branchById', store.getters['branches/byId']); //eslint-disable-line
+
   },
 });
 </script>
