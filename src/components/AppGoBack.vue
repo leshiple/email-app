@@ -1,5 +1,5 @@
 <template>
-  <q-btn unelevated to="/" color="secondary" icon="chevron_left" class="q-mr-sm" />
+  <q-btn unelevated color="secondary" icon="chevron_left" class="q-mr-sm" @click="$router.back()" />
 </template>
 
 <script lang="ts">
