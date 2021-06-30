@@ -8,13 +8,18 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         component: () => import('pages/Index.vue'),
+        redirect: '/inbox',
         children: [
           {
-            path: '',
-            component: () => import('pages/Branches.vue'),
+            path: 'starred',
+            component: () => import('src/pages/Starred.vue'),
           },
           {
-            path: ':id',
+            path: ':folder',
+            component: () => import('src/pages/Folder.vue'),
+          },
+          {
+            path: ':folder/:branch',
             component: () => import('pages/Branch.vue'),
           },
         ],
