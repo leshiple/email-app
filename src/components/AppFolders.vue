@@ -1,15 +1,22 @@
 <template>
   <app-card-section-header title-slug="folders" @click="showDialog" />
   <q-list dense class="q-mb-lg">
-    <app-folders-item
+    <router-link
       v-for="folder in folders"
       :key="folder.slug"
-      :slug="folder.slug"
-      :icon="folder.icon"
-      :type="folder.type"
-      @edit="onEdit"
-      @delete="onDelete"
-    />
+      :to="`/${folder.slug}`"
+       v-slot="{isActive}"
+      style="color:inherit;text-decoration:none;"
+    >
+      <app-folders-item
+        :active="isActive"
+        :slug="folder.slug"
+        :icon="folder.icon"
+        :type="folder.type"
+        @edit="onEdit"
+        @delete="onDelete"
+      />
+    </router-link>
   </q-list>
   <app-dialog-add-group
     v-if="visibleDialog"
