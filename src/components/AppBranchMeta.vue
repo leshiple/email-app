@@ -4,7 +4,7 @@
       <span class="q-mr-lg text-grey-7">{{$t('subject')}}:</span>
       <span>{{subject}}</span>
     </div>
-    <div class="flex items-center">
+    <div v-if="labels.length" class="flex items-center">
       <div class="q-mr-lg text-grey-7">{{$t('labels')}}:</div>
       <q-chip
         v-for="label in labels"
