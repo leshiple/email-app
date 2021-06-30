@@ -3,8 +3,8 @@ import { IRootState } from '../index';
 import { ILabesState } from './state';
 
 const getters: GetterTree<ILabesState, IRootState> = {
-  someAction(/* context */) {
-    // your code
+  byName(state) {
+    return (name: string) => state.labels.find((label) => label.name === name);
   },
 };
 
