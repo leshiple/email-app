@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { useI18n } from 'vue-i18n';
+import useAuthorName from 'src/composables/useAuthorName';
 
 export default defineComponent({
   name: 'AppMail',
@@ -40,9 +40,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const { t } = useI18n();
-    const authorName = computed(() => (props.author === 'me' ? t('me') : props.author));
+    const authorName = useAuthorName(props.author);
     const CSSClass = computed(() => (props.author === 'me' ? 'bg-grey-2 q-ml-auto' : 'bg-blue-grey-2'));
 
     return {
