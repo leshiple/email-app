@@ -2,6 +2,7 @@
   <app-toolbar
     :folders="folders"
     :labels="labels"
+    :show-tools="Boolean(selected.length)"
     @change-folder="onChangeFolder"
     @toggle-starred="onToggleStarred"
     @delete="onDelete"
@@ -66,11 +67,13 @@ export default defineComponent({
     const deleteBranches = inject('deleteBranches') as M;
 
     const onChangeFolder = (folderName: string) => {
-      setFolderBranches({
-        branchesIds: selected.value,
-        folderName,
-      });
-      toggleSelected();
+      if (selected.value.length) {
+        setFolderBranches({
+          branchesIds: selected.value,
+          folderName,
+        });
+        toggleSelected();
+      }
     };
 
     const onToggleStarred = () => {
@@ -93,17 +96,15 @@ export default defineComponent({
     };
 
     const onDelete = () => {
-      if (selected.value.length) {
-        if (props.folder === TRASH_FOLDER) {
-          deleteBranches(selected.value);
-        } else {
-          setFolderBranches({
-            branchesIds: selected.value,
-            folderName: TRASH_FOLDER,
-          });
-        }
-        toggleSelected();
+      if (props.folder === TRASH_FOLDER) {
+        deleteBranches(selected.value);
+      } else {
+        setFolderBranches({
+          branchesIds: selected.value,
+          folderName: TRASH_FOLDER,
+        });
       }
+      toggleSelected();
     };
 
     return {

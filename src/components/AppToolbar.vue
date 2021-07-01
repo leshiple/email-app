@@ -1,10 +1,12 @@
 <template>
   <q-card-section>
     <slot />
-    <app-toolbar-labels :labels="labels"/>
-    <app-toolbar-folders :folders="folders" @change="onChangeFolder" />
-    <app-toolbar-delete @click="$emit('delete')"/>
-    <app-toolbar-more />
+    <template v-if="showTools">
+      <app-toolbar-labels :labels="labels"/>
+      <app-toolbar-folders :folders="folders" @change="onChangeFolder" />
+      <app-toolbar-delete @click="$emit('delete')"/>
+      <app-toolbar-more />
+    </template>
   </q-card-section>
 </template>
 
@@ -20,6 +22,10 @@ import { ILabel } from 'src/types/Labels.d';
 export default defineComponent({
   name: 'AppToolbar',
   props: {
+    showTools: {
+      type: Boolean,
+      default: true,
+    },
     folders: {
       type: Array as PropType<IFolder[]>,
       required: true,
