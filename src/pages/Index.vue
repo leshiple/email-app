@@ -40,6 +40,7 @@ export default defineComponent({
 
     provide('setFolderBranches', (payload: IPayloadSetFolder) => store.dispatch('branches/setFolder', payload));
     provide('toggleStarredBranches', (payload: IPayloadToggleStarred) => store.dispatch('branches/toggleStarred', payload));
+    provide('deleteBranches', (ids: string[]) => store.dispatch('branches/delete', ids));
     provide('starredBranches', computed(() => store.getters['branches/starred'])); //eslint-disable-line
     provide('branchesByFolder', store.getters['branches/byFolder']); //eslint-disable-line
     provide('branchById', store.getters['branches/byId']); //eslint-disable-line

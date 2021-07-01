@@ -3,7 +3,7 @@
     <slot />
     <app-toolbar-labels :labels="labels"/>
     <app-toolbar-folders :folders="folders" @change="onChangeFolder" />
-    <app-toolbar-delete />
+    <app-toolbar-delete @click="$emit('delete')"/>
     <app-toolbar-more />
   </q-card-section>
 </template>
@@ -38,6 +38,7 @@ export default defineComponent({
   emits: {
     'change-folder': null,
     'toggle-starred': null,
+    delete: null,
   },
   setup(_props, { emit }) {
     const onChangeFolder = (folder: string) => {

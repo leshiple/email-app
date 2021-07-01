@@ -4,6 +4,7 @@
     :labels="labels"
     @change-folder="onChangeFolder"
     @toggle-starred="onToggleStarred"
+    @delete="onDelete"
   >
     <app-toolbar-check
       :status="checkStatus"
@@ -32,6 +33,9 @@ import { IBranch, IPayloadSetFolder, IPayloadToggleStarred } from 'src/types/Bra
 
 type F = (payload: IPayloadSetFolder) => void //eslint-disable-line
 type K = (payload: IPayloadToggleStarred) => void //eslint-disable-line
+type M = (payload: string[]) => void //eslint-disable-line
+
+const TRASH_FOLDER = 'trash';
 
 export default defineComponent({
   name: 'AppFolder',
@@ -59,6 +63,7 @@ export default defineComponent({
     const labels = inject('labels');
     const setFolderBranches = inject('setFolderBranches') as F;
     const toggleStarredBranches = inject('toggleStarredBranches') as K;
+    const deleteBranches = inject('deleteBranches') as M;
 
     const onChangeFolder = (folderName: string) => {
       setFolderBranches({
@@ -87,6 +92,20 @@ export default defineComponent({
       });
     };
 
+    const onDelete = () => {
+      if (selected.value.length) {
+        if (props.folder === TRASH_FOLDER) {
+          deleteBranches(selected.value);
+        } else {
+          setFolderBranches({
+            branchesIds: selected.value,
+            folderName: TRASH_FOLDER,
+          });
+        }
+        toggleSelected();
+      }
+    };
+
     return {
       folders,
       labels,
@@ -97,6 +116,7 @@ export default defineComponent({
       onChangeFolder,
       onToggleStarred,
       onToggleCheckBranch,
+      onDelete,
     };
   },
 });
