@@ -25,7 +25,7 @@ import AppToolbar from 'src/components/AppToolbar.vue';
 import AppGoBack from 'src/components/AppGoBack.vue';
 import AppBranchMeta from 'src/components/AppBranchMeta.vue';
 import AppMail from 'src/components/AppMail.vue';
-import { IGetBranchById } from 'src/types/Branches.d';
+import { IGetBranchById, IToggleReadBranches } from 'src/types/Branches.d';
 
 export default defineComponent({
   name: 'PageBranch',
@@ -45,6 +45,15 @@ export default defineComponent({
       const branchId = route.params.branch.toString();
       return branchById(branchId);
     });
+
+    const toggleReadBranches = inject('toggleReadBranches') as IToggleReadBranches;
+
+    if (!branch.value.read) {
+      toggleReadBranches({
+        branchesIds: [branch.value.id],
+        read: true,
+      });
+    }
 
     return {
       folders,
