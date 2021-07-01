@@ -9,6 +9,7 @@ export interface IBranchBase {
   date: string,
   folder: string,
   starred: boolean,
+  read: boolean,
 }
 
 export interface IBranch extends IBranchBase {
@@ -22,4 +23,14 @@ export interface IBranchWithLabels extends IBranchBase {
 export interface IBranchExtended extends IBranchBase {
   labels: ILabel[],
   mails: IMail[]
+}
+
+export interface IPayloadSetFolder {
+  branchesIds: string[]
+  folderName: string
+}
+
+export interface IPayloadToggleStarred {
+  branchesIds: string[]
+  status: boolean
 }

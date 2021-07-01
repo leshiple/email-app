@@ -1,8 +1,8 @@
 <template>
   <q-card-section>
     <slot />
-    <app-toolbar-labels :labels="labels" />
-    <app-toolbar-folders :folders="folders" />
+    <app-toolbar-labels :labels="labels"/>
+    <app-toolbar-folders :folders="folders" @change="onChangeFolder" />
     <app-toolbar-delete />
     <app-toolbar-more />
   </q-card-section>
@@ -34,6 +34,23 @@ export default defineComponent({
     AppToolbarLabels,
     AppToolbarDelete,
     AppToolbarMore,
+  },
+  emits: {
+    'change-folder': null,
+    'toggle-starred': null,
+  },
+  setup(_props, { emit }) {
+    const onChangeFolder = (folder: string) => {
+      if (folder === 'starred') {
+        emit('toggle-starred');
+      } else {
+        emit('change-folder', folder);
+      }
+    };
+
+    return {
+      onChangeFolder,
+    };
   },
 });
 </script>

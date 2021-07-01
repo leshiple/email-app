@@ -1,7 +1,10 @@
 <template>
     <q-item
       class="branch-list-item"
-      :class="{'bg-grey-2': isActive}"
+      :class="{
+        'bg-grey-2': isActive,
+        'text-bold': !read,
+      }"
       clickable
     >
       <q-item-section side class="q-pr-none q-mr-sm">
@@ -80,6 +83,10 @@ export default defineComponent({
     starred: {
       type: Boolean,
       default: false,
+    },
+    read: {
+      type: Boolean,
+      required: true,
     },
   },
   emits: {

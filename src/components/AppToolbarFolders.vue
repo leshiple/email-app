@@ -8,6 +8,7 @@
         :icon="folder.icon"
         :type="folder.type"
         :enable-context="false"
+        @click="$emit('change', folder.slug)"
       />
     </q-list>
   </q-btn-dropdown>
@@ -25,6 +26,9 @@ export default defineComponent({
       type: Array as PropType<IFolder[]>,
       required: true,
     },
+  },
+  emits: {
+    change: null,
   },
   components: {
     AppFoldersItem,

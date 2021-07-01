@@ -11,6 +11,12 @@ const actions: ActionTree<IBranchState, IRootState> = {
   delete({ commit }, id: string) {
     commit(TYPES.DELETE, id);
   },
+  setFolder({ commit }, payload) {
+    commit(TYPES.SET_FOLDER, payload);
+  },
+  toggleStarred({ commit }, payload) {
+    commit(TYPES.TOGGLE_STARRED, payload);
+  },
 };
 
 export default actions;

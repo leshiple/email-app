@@ -29,7 +29,7 @@ export default defineComponent({
   props: {
     active: {
       type: Boolean,
-      required: true,
+      default: false,
     },
     icon: {
       type: String,

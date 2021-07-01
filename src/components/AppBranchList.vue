@@ -15,13 +15,16 @@
         :date="branch.date"
         :labels="branch.labels"
         :starred="branch.starred"
+        :read="branch.read"
       />
     </router-link>
   </q-list>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from 'vue';
+import {
+  defineComponent, computed, PropType,
+} from 'vue';
 import AppBranchListItem from 'src/components/AppBranchListItem.vue';
 import { IBranch } from 'src/types/Branches.d';
 
@@ -31,19 +34,31 @@ export default defineComponent({
     AppBranchListItem,
   },
   props: {
+    selected: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
     currentFolder: {
       type: String,
       required: true,
     },
     branches: {
       type: Array as PropType<IBranch[]>,
-      default() {
-        return [];
-      },
+      default: () => [],
     },
   },
-  setup() {
-    const checked = ref([]);
+  emits: {
+    'update:selected': null,
+  },
+  setup(props, { emit }) {
+    const checked = computed({
+      get():string[] {
+        return props.selected;
+      },
+      set(value: string[]): void {
+        emit('update:selected', value);
+      },
+    });
 
     return {
       checked,

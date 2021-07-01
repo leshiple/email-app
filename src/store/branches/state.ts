@@ -16,6 +16,7 @@ function state(): IBranchState {
         labels: ['Freelance'],
         starred: true,
         folder: 'inbox',
+        read: true,
       },
       {
         id: 'branch-2',
@@ -26,6 +27,7 @@ function state(): IBranchState {
         labels: ['Friends'],
         starred: false,
         folder: 'inbox',
+        read: true,
       },
       {
         id: 'branch-3',
@@ -36,6 +38,7 @@ function state(): IBranchState {
         labels: [],
         starred: true,
         folder: 'inbox',
+        read: true,
       },
       {
         id: 'branch-4',
@@ -46,6 +49,7 @@ function state(): IBranchState {
         labels: ['Social'],
         starred: false,
         folder: 'inbox',
+        read: true,
       },
       {
         id: 'branch-5',
@@ -56,6 +60,7 @@ function state(): IBranchState {
         labels: [],
         starred: false,
         folder: 'inbox',
+        read: false,
       },
       {
         id: 'branch-6',
@@ -66,6 +71,7 @@ function state(): IBranchState {
         labels: ['Social', 'Support'],
         starred: false,
         folder: 'trash',
+        read: true,
       },
       {
         id: 'branch-7',
@@ -76,6 +82,7 @@ function state(): IBranchState {
         labels: [],
         starred: false,
         folder: 'trash',
+        read: true,
       },
       {
         id: 'branch-8',
@@ -86,6 +93,7 @@ function state(): IBranchState {
         labels: ['Support'],
         starred: false,
         folder: 'trash',
+        read: true,
       },
       {
         id: 'branch-9',
@@ -96,6 +104,7 @@ function state(): IBranchState {
         labels: [],
         starred: true,
         folder: 'trash',
+        read: true,
       },
       {
         id: 'branch-10',
@@ -106,6 +115,7 @@ function state(): IBranchState {
         labels: ['Friends', 'Social'],
         starred: true,
         folder: 'trash',
+        read: true,
       },
     ],
   };
