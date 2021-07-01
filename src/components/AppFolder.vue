@@ -12,7 +12,12 @@
     />
   </app-toolbar>
   <q-separator inset class="q-mb-md" />
-  <app-branch-list v-model:selected="selected" :current-folder="folder" :branches="branches" />
+  <app-branch-list
+    v-model:selected="selected"
+    :current-folder="folder"
+    :branches="branches"
+    @toggle-check-item="onToggleCheckBranch"
+  />
 </template>
 
 <script lang="ts">
@@ -75,6 +80,13 @@ export default defineComponent({
       toggleSelected();
     };
 
+    const onToggleCheckBranch = ({ id, status }: {id: string, status: boolean}) => {
+      toggleStarredBranches({
+        branchesIds: [id],
+        status,
+      });
+    };
+
     return {
       folders,
       labels,
@@ -84,6 +96,7 @@ export default defineComponent({
       toggleSelected,
       onChangeFolder,
       onToggleStarred,
+      onToggleCheckBranch,
     };
   },
 });

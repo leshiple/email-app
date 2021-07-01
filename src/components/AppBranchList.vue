@@ -16,6 +16,7 @@
         :labels="branch.labels"
         :starred="branch.starred"
         :read="branch.read"
+        @toggle-check="(data) => $emit('toggle-check-item', data)"
       />
     </router-link>
   </q-list>
@@ -49,6 +50,7 @@ export default defineComponent({
   },
   emits: {
     'update:selected': null,
+    'toggle-check-item': null,
   },
   setup(props, { emit }) {
     const checked = computed({

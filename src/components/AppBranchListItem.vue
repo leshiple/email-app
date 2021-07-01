@@ -8,13 +8,20 @@
       clickable
     >
       <q-item-section side class="q-pr-none q-mr-sm">
-        <q-checkbox v-model="checked" :val="id" />
+        <q-checkbox
+          v-model="checked"
+          :val="id"
+        />
       </q-item-section>
 
       <q-item-section side class="q-mr-lg">
         <q-icon
           :color="starred ? 'yellow-4': 'grey-8'"
           :name="starred ? 'star' : 'star_border'"
+          @click.prevent="$emit('toggle-check', {
+            id: id,
+            status: !starred
+          })"
         />
       </q-item-section>
 
@@ -91,6 +98,7 @@ export default defineComponent({
   },
   emits: {
     'update:modelValue': null,
+    'toggle-check': null,
   },
   setup(props, { emit }) {
     const checked = computed({
