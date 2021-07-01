@@ -16,10 +16,8 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const folder = computed(() => route.params.folder.toString());
-    const branches = computed(() => {
-      const branchesByFolder = inject('branchesByFolder') as IGetBranchesByFolder;
-      return branchesByFolder(folder.value);
-    });
+    const branchesByFolder = inject('branchesByFolder') as IGetBranchesByFolder;
+    const branches = computed(() => branchesByFolder(folder.value));
 
     return {
       folder,
