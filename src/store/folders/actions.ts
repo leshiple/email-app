@@ -1,5 +1,5 @@
 import { ActionTree } from 'vuex';
-import { DEFAUL_FOLDER_ICON } from 'src/constants';
+import { DEFAUL_FOLDER_ICON, TRASH_FOLDER } from 'src/constants';
 import { IPayloadEditFolder } from 'src/types/Folders';
 import { IBranchWithLabels } from 'src/types/Branches.d';
 import { IRootState } from '../index';
@@ -24,7 +24,7 @@ const actions: ActionTree<IFoldersState, IRootState> = {
 
     await dispatch('branches/setFolder', {
       branchesIds,
-      folderName: 'trash',
+      folderName: TRASH_FOLDER,
     }, {
       root: true,
     });

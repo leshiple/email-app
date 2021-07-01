@@ -1,3 +1,4 @@
+import { INBOX_FOLDER, STARRED, TRASH_FOLDER } from 'src/constants';
 import { IFolder } from 'src/types/Folders.d';
 
 export interface IFoldersState {
@@ -8,12 +9,12 @@ function state(): IFoldersState {
   return {
     folders: [
       {
-        slug: 'inbox',
+        slug: INBOX_FOLDER,
         icon: 'mail',
         type: 'system',
       },
       {
-        slug: 'starred',
+        slug: STARRED,
         icon: 'star',
         type: 'system',
       },
@@ -28,7 +29,7 @@ function state(): IFoldersState {
         type: 'system',
       },
       {
-        slug: 'trash',
+        slug: TRASH_FOLDER,
         icon: 'delete',
         type: 'system',
       },

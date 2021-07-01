@@ -18,6 +18,7 @@ import AppToolbarDelete from 'src/components/AppToolbarDelete.vue';
 import AppToolbarMore from 'src/components/AppToolbarMore.vue';
 import { IFolder } from 'src/types/Folders.d';
 import { ILabel } from 'src/types/Labels.d';
+import { STARRED } from 'src/constants';
 
 export default defineComponent({
   name: 'AppToolbar',
@@ -50,7 +51,7 @@ export default defineComponent({
   },
   setup(_props, { emit }) {
     const onChangeFolder = (folder: string) => {
-      if (folder === 'starred') {
+      if (folder === STARRED) {
         emit('toggle-starred');
       } else {
         emit('change-folder', folder);

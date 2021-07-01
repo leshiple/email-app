@@ -40,8 +40,7 @@ import {
   IToggleLabelToBranches,
   IToggleReadBranches,
 } from 'src/types/Branches.d';
-
-const TRASH_FOLDER = 'trash';
+import { TRASH_FOLDER } from 'src/constants';
 
 export default defineComponent({
   name: 'AppFolder',
