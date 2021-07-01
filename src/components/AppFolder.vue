@@ -34,17 +34,12 @@ import AppBranchList from 'src/components/AppBranchList.vue';
 import useBranches from 'src/composables/useBranches';
 import {
   IBranchWithLabels,
-  IPayloadSetFolder,
-  IPayloadToggleStarred,
-  IPayloadToggleLabelFromBranches,
-  IPayloadToggleRead,
+  ISetFolderBranches,
+  IToggleStarredBranches,
+  IDeleteBranches,
+  IToggleLabelToBranches,
+  IToggleReadBranches,
 } from 'src/types/Branches.d';
-
-type F = (payload: IPayloadSetFolder) => void //eslint-disable-line
-type K = (payload: IPayloadToggleStarred) => void //eslint-disable-line
-type M = (payload: string[]) => void //eslint-disable-line
-type N = (payload: IPayloadToggleLabelFromBranches) => void //eslint-disable-line
-type P = (payload: IPayloadToggleRead) => void //eslint-disable-line
 
 const TRASH_FOLDER = 'trash';
 
@@ -72,12 +67,12 @@ export default defineComponent({
     } = useBranches(currentBranches);
     const folders = inject('folders');
     const labels = inject('labels');
-    const setFolderBranches = inject('setFolderBranches') as F;
-    const toggleStarredBranches = inject('toggleStarredBranches') as K;
-    const deleteBranches = inject('deleteBranches') as M;
-    const addLabelToBranches = inject('addLabelToBranches') as N;
-    const deleteLabelFromBranches = inject('deleteLabelFromBranches') as N;
-    const toggleReadBranches = inject('toggleReadBranches') as P;
+    const setFolderBranches = inject('setFolderBranches') as ISetFolderBranches;
+    const toggleStarredBranches = inject('toggleStarredBranches') as IToggleStarredBranches;
+    const deleteBranches = inject('deleteBranches') as IDeleteBranches;
+    const addLabelToBranches = inject('addLabelToBranches') as IToggleLabelToBranches;
+    const deleteLabelFromBranches = inject('deleteLabelFromBranches') as IToggleLabelToBranches;
+    const toggleReadBranches = inject('toggleReadBranches') as IToggleReadBranches;
     const selectedBranches = computed(() => props.branches.filter((branch) => (
       selected.value.includes(branch.id))));
 

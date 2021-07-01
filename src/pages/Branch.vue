@@ -25,9 +25,7 @@ import AppToolbar from 'src/components/AppToolbar.vue';
 import AppGoBack from 'src/components/AppGoBack.vue';
 import AppBranchMeta from 'src/components/AppBranchMeta.vue';
 import AppMail from 'src/components/AppMail.vue';
-import { IBranchExtended } from 'src/types/Branches.d';
-
-type F = (folderName: string) => IBranchExtended //eslint-disable-line
+import { IGetBranchById } from 'src/types/Branches.d';
 
 export default defineComponent({
   name: 'PageBranch',
@@ -41,7 +39,7 @@ export default defineComponent({
     const route = useRoute();
     const folders = inject('folders');
     const allLabels = inject('labels');
-    const branchById = inject('branchById') as F;
+    const branchById = inject('branchById') as IGetBranchById;
 
     const branch = computed(() => {
       const branchId = route.params.branch.toString();

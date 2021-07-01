@@ -6,9 +6,7 @@
 import { defineComponent, inject, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import AppFolder from 'src/components/AppFolder.vue';
-import { IBranch } from 'src/types/Branches.d';
-
-type F = (folderName: string) => IBranch[] //eslint-disable-line
+import { IGetBranchesByFolder } from 'src/types/Branches.d';
 
 export default defineComponent({
   name: 'PageFolder',
@@ -19,7 +17,7 @@ export default defineComponent({
     const route = useRoute();
     const folder = computed(() => route.params.folder.toString());
     const branches = computed(() => {
-      const branchesByFolder = inject('branchesByFolder') as F;
+      const branchesByFolder = inject('branchesByFolder') as IGetBranchesByFolder;
       return branchesByFolder(folder.value);
     });
 
