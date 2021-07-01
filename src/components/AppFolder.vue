@@ -64,7 +64,9 @@ export default defineComponent({
     };
 
     const onToggleStarred = () => {
-      const allStarred = props.branches.every((branch) => branch.starred);
+      const selectedBranches = props.branches.filter((branch) => (
+        selected.value.includes(branch.id)));
+      const allStarred = selectedBranches.every((branch) => branch.starred);
       const status = !allStarred;
       toggleStarredBranches({
         branchesIds: selected.value,
