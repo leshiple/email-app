@@ -7,6 +7,7 @@
         clickable
         v-ripple
         v-close-popup
+        @click="$emit(item.event, item.param)"
       >
         <q-item-section>
           {{$t(item.slug)}}
@@ -21,19 +22,20 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppToolbarMore',
+  emits: {
+    'toggle-read': null,
+  },
   setup() {
     const items = [
       {
         slug: 'markAsRead',
+        event: 'toggle-read',
+        param: true,
       },
       {
         slug: 'markAsUnread',
-      },
-      {
-        slug: 'addStar',
-      },
-      {
-        slug: 'removeStar',
+        event: 'toggle-read',
+        param: false,
       },
     ];
 

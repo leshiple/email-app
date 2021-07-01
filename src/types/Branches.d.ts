@@ -39,3 +39,8 @@ export interface IPayloadToggleLabelFromBranches {
   branchesIds: string[]
   label: string
 }
+
+export interface IPayloadToggleRead {
+  branchesIds: string[]
+  read: boolean
+}

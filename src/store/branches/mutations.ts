@@ -1,6 +1,10 @@
 import { MutationTree } from 'vuex';
 import {
-  IBranch, IPayloadSetFolder, IPayloadToggleStarred, IPayloadToggleLabelFromBranches,
+  IBranch,
+  IPayloadSetFolder,
+  IPayloadToggleStarred,
+  IPayloadToggleLabelFromBranches,
+  IPayloadToggleRead,
 } from 'src/types/Branches.d';
 import { IBranchState } from './state';
 
@@ -11,6 +15,7 @@ export const TYPES = {
   TOGGLE_STARRED: 'TOGGLE_STARRED',
   ADD_LABEL: 'ADD_LABEL',
   DELETE_LABEL: 'DELETE_LABEL',
+  TOGGLE_READ: 'TOGGLE_READ',
 };
 
 const mutation: MutationTree<IBranchState> = {
@@ -55,6 +60,15 @@ const mutation: MutationTree<IBranchState> = {
       const isSuitable = branchesIds.includes(branch.id);
       if (isSuitable) {
         branch.labels = branch.labels.filter((labelName) => (labelName !== label));
+      }
+    });
+  },
+  [TYPES.TOGGLE_READ](state: IBranchState, { branchesIds, read }: IPayloadToggleRead) {
+    state.branches.forEach((branch) => {
+      const isSuitable = branchesIds.includes(branch.id);
+
+      if (isSuitable) {
+        branch.read = read;
       }
     });
   },

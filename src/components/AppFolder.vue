@@ -6,6 +6,7 @@
     @change-folder="onChangeFolder"
     @change-label="onChangeLabel"
     @toggle-starred="onToggleStarred"
+    @toggle-read="onToggleRead"
     @delete="onDelete"
   >
     <app-toolbar-check
@@ -32,13 +33,18 @@ import AppToolbarCheck from 'src/components/AppToolbarCheck.vue';
 import AppBranchList from 'src/components/AppBranchList.vue';
 import useBranches from 'src/composables/useBranches';
 import {
-  IBranchWithLabels, IPayloadSetFolder, IPayloadToggleStarred, IPayloadToggleLabelFromBranches,
+  IBranchWithLabels,
+  IPayloadSetFolder,
+  IPayloadToggleStarred,
+  IPayloadToggleLabelFromBranches,
+  IPayloadToggleRead,
 } from 'src/types/Branches.d';
 
 type F = (payload: IPayloadSetFolder) => void //eslint-disable-line
 type K = (payload: IPayloadToggleStarred) => void //eslint-disable-line
 type M = (payload: string[]) => void //eslint-disable-line
 type N = (payload: IPayloadToggleLabelFromBranches) => void //eslint-disable-line
+type P = (payload: IPayloadToggleRead) => void //eslint-disable-line
 
 const TRASH_FOLDER = 'trash';
 
@@ -71,6 +77,7 @@ export default defineComponent({
     const deleteBranches = inject('deleteBranches') as M;
     const addLabelToBranches = inject('addLabelToBranches') as N;
     const deleteLabelFromBranches = inject('deleteLabelFromBranches') as N;
+    const toggleReadBranches = inject('toggleReadBranches') as P;
     const selectedBranches = computed(() => props.branches.filter((branch) => (
       selected.value.includes(branch.id))));
 
@@ -131,6 +138,14 @@ export default defineComponent({
       toggleSelected();
     };
 
+    const onToggleRead = (read: boolean) => {
+      toggleReadBranches({
+        branchesIds: selected.value,
+        read,
+      });
+      toggleSelected();
+    };
+
     return {
       folders,
       labels,
@@ -143,6 +158,7 @@ export default defineComponent({
       onToggleStarred,
       onToggleCheckBranch,
       onDelete,
+      onToggleRead,
     };
   },
 });

@@ -23,6 +23,9 @@ const actions: ActionTree<IBranchState, IRootState> = {
   deleteLabel({ commit }, payload) {
     commit(TYPES.DELETE_LABEL, payload);
   },
+  toggleRead({ commit }, payload) {
+    commit(TYPES.TOGGLE_READ, payload);
+  },
 };
 
 export default actions;

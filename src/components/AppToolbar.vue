@@ -5,7 +5,7 @@
       <app-toolbar-labels :labels="labels" @change="(label) => $emit('change-label', label)"/>
       <app-toolbar-folders :folders="folders" @change="onChangeFolder" />
       <app-toolbar-delete @click="$emit('delete')"/>
-      <app-toolbar-more />
+      <app-toolbar-more @toggle-read="(read) => $emit('toggle-read', read)"/>
     </template>
   </q-card-section>
 </template>
@@ -45,6 +45,7 @@ export default defineComponent({
     'change-folder': null,
     'change-label': null,
     'toggle-starred': null,
+    'toggle-read': null,
     delete: null,
   },
   setup(_props, { emit }) {
