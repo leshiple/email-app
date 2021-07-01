@@ -1,9 +1,9 @@
 import {
   ref, watchEffect, Ref, ComputedRef,
 } from 'vue';
-import { IBranch } from 'src/types/Branches.d';
+import { IBranchWithLabels } from 'src/types/Branches.d';
 
-export default (branches: ComputedRef<IBranch[]>) => {
+export default (branches: ComputedRef<IBranchWithLabels[]>) => {
   const selected: Ref<string[]> = ref([]);
   const checkStatus = ref('noOne');
 
@@ -30,7 +30,7 @@ export default (branches: ComputedRef<IBranch[]>) => {
   const setCheckedStatus = (status: string) => {
     switch (status) {
       case 'all':
-        selected.value = branches.value.map((branch: IBranch) => branch.id);
+        selected.value = branches.value.map((branch) => branch.id);
         break;
       case 'noOne':
         selected.value = [];

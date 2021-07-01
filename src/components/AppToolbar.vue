@@ -2,7 +2,7 @@
   <q-card-section>
     <slot />
     <template v-if="showTools">
-      <app-toolbar-labels :labels="labels"/>
+      <app-toolbar-labels :labels="labels" @change="(label) => $emit('change-label', label)"/>
       <app-toolbar-folders :folders="folders" @change="onChangeFolder" />
       <app-toolbar-delete @click="$emit('delete')"/>
       <app-toolbar-more />
@@ -43,6 +43,7 @@ export default defineComponent({
   },
   emits: {
     'change-folder': null,
+    'change-label': null,
     'toggle-starred': null,
     delete: null,
   },

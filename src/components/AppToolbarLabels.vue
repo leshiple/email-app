@@ -7,6 +7,7 @@
         :name="label.name"
         :color="label.color"
         :enable-context="true"
+        @click="$emit('change', label.name)"
       />
     </q-list>
   </q-btn-dropdown>
@@ -24,6 +25,9 @@ export default defineComponent({
       type: Array as PropType<ILabel[]>,
       required: true,
     },
+  },
+  emits: {
+    change: null,
   },
   components: {
     AppLabelsItem,

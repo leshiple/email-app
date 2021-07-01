@@ -17,6 +17,12 @@ const actions: ActionTree<IBranchState, IRootState> = {
   toggleStarred({ commit }, payload) {
     commit(TYPES.TOGGLE_STARRED, payload);
   },
+  addLabel({ commit }, payload) {
+    commit(TYPES.ADD_LABEL, payload);
+  },
+  deleteLabel({ commit }, payload) {
+    commit(TYPES.DELETE_LABEL, payload);
+  },
 };
 
 export default actions;

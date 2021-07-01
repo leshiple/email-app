@@ -34,3 +34,8 @@ export interface IPayloadToggleStarred {
   branchesIds: string[]
   status: boolean
 }
+
+export interface IPayloadToggleLabelFromBranches {
+  branchesIds: string[]
+  label: string
+}

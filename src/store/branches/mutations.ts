@@ -1,5 +1,7 @@
 import { MutationTree } from 'vuex';
-import { IBranch, IPayloadSetFolder, IPayloadToggleStarred } from 'src/types/Branches.d';
+import {
+  IBranch, IPayloadSetFolder, IPayloadToggleStarred, IPayloadToggleLabelFromBranches,
+} from 'src/types/Branches.d';
 import { IBranchState } from './state';
 
 export const TYPES = {
@@ -7,6 +9,8 @@ export const TYPES = {
   DELETE: 'DELETE',
   SET_FOLDER: 'SET_FOLDER',
   TOGGLE_STARRED: 'TOGGLE_STARRED',
+  ADD_LABEL: 'ADD_LABEL',
+  DELETE_LABEL: 'DELETE_LABEL',
 };
 
 const mutation: MutationTree<IBranchState> = {
@@ -31,6 +35,26 @@ const mutation: MutationTree<IBranchState> = {
 
       if (isSuitable) {
         branch.starred = status;
+      }
+    });
+  },
+  [TYPES.ADD_LABEL](state: IBranchState, { branchesIds, label }: IPayloadToggleLabelFromBranches) {
+    state.branches.forEach((branch) => {
+      const isSuitable = branchesIds.includes(branch.id);
+      if (isSuitable) {
+        const notHasLabel = !branch.labels.includes(label);
+        if (notHasLabel) {
+          branch.labels.push(label);
+        }
+      }
+    });
+  },
+  [TYPES.DELETE_LABEL](state: IBranchState, { branchesIds, label }
+    : IPayloadToggleLabelFromBranches) {
+    state.branches.forEach((branch) => {
+      const isSuitable = branchesIds.includes(branch.id);
+      if (isSuitable) {
+        branch.labels = branch.labels.filter((labelName) => (labelName !== label));
       }
     });
   },

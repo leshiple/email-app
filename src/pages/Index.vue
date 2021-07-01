@@ -17,7 +17,7 @@ import { storeKey } from 'src/store';
 import AppSidebar from 'src/components/AppSidebar.vue';
 import { IPayloadEditFolder } from 'src/types/Folders.d';
 import { ILabel, IPayloadEditLabel } from 'src/types/Labels.d';
-import { IPayloadSetFolder, IPayloadToggleStarred } from 'src/types/Branches.d';
+import { IPayloadSetFolder, IPayloadToggleStarred, IPayloadToggleLabelFromBranches } from 'src/types/Branches.d';
 
 export default defineComponent({
   name: 'PageIndex',
@@ -41,6 +41,8 @@ export default defineComponent({
     provide('setFolderBranches', (payload: IPayloadSetFolder) => store.dispatch('branches/setFolder', payload));
     provide('toggleStarredBranches', (payload: IPayloadToggleStarred) => store.dispatch('branches/toggleStarred', payload));
     provide('deleteBranches', (ids: string[]) => store.dispatch('branches/delete', ids));
+    provide('addLabelToBranches', (payload: IPayloadToggleLabelFromBranches) => store.dispatch('branches/addLabel', payload));
+    provide('deleteLabelFromBranches', (payload: IPayloadToggleLabelFromBranches) => store.dispatch('branches/deleteLabel', payload));
     provide('starredBranches', computed(() => store.getters['branches/starred'])); //eslint-disable-line
     provide('branchesByFolder', store.getters['branches/byFolder']); //eslint-disable-line
     provide('branchById', store.getters['branches/byId']); //eslint-disable-line
