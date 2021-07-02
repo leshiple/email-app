@@ -8,7 +8,7 @@ export default (branches: ComputedRef<IBranchWithLabels[]>) => {
   const checkStatus = ref('noOne');
 
   watchEffect(() => {
-    const allSelected = selected.value.length === branches.value.length;
+    const allSelected = branches.value.length && (selected.value.length === branches.value.length);
     const noOneSelected = selected.value.length === 0;
     if (allSelected) {
       checkStatus.value = 'all';
