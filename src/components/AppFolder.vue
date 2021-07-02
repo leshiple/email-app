@@ -19,7 +19,7 @@
   <app-branch-list
     v-if="branches.length"
     v-model:selected="selected"
-    :current-folder="folder"
+    :parent="parent"
     :branches="branches"
     @toggle-check-item="onToggleCheckBranch"
   />
@@ -52,7 +52,7 @@ export default defineComponent({
     AppBranchList,
   },
   props: {
-    folder: {
+    parent: {
       type: String,
       required: true,
     },
@@ -123,7 +123,7 @@ export default defineComponent({
     };
 
     const onDelete = () => {
-      if (props.folder === TRASH_FOLDER) {
+      if (props.parent === TRASH_FOLDER) {
         deleteBranches(selected.value);
       } else {
         setFolderBranches({

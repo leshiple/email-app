@@ -48,6 +48,7 @@ export default defineComponent({
     provide('starredBranches', computed(() => store.getters['branches/starred'])); //eslint-disable-line
     provide('toggleReadBranches', (payload: IPayloadToggleRead) => store.dispatch('branches/toggleRead', payload));
     provide('branchesByFolder', store.getters['branches/byFolder']); //eslint-disable-line
+    provide('branchesByLabel', store.getters['branches/byLabel']); //eslint-disable-line
     provide('branchById', store.getters['branches/byId']); //eslint-disable-line
 
   },

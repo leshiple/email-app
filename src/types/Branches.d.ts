@@ -55,6 +55,8 @@ export type IToggleLabelToBranches = (payload: IPayloadToggleLabelFromBranches) 
 
 export type IToggleReadBranches = (payload: IPayloadToggleRead) => void //eslint-disable-line
 
-export type IGetBranchesByFolder = (folderName: string) => IBranch[] //eslint-disable-line
+export type IGetBranchesByFolder = (folderName: string) => IBranchWithLabels[] //eslint-disable-line
+
+export type IGetBranchesByLabel = (label: string) => IBranchWithLabels[] //eslint-disable-line
 
 export type IGetBranchById = (folderName: string) => IBranchExtended //eslint-disable-line

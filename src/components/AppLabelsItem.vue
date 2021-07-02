@@ -4,6 +4,8 @@
     v-ripple
     v-close-popup
     class="text-grey-8"
+    :active="active"
+    active-class="bg-grey-2"
   >
     <q-item-section>{{ name }}</q-item-section>
     <q-item-section avatar>
@@ -24,6 +26,10 @@ import AppGroupItemContextMenu from 'src/components/AppGroupItemContextMenu.vue'
 export default defineComponent({
   name: 'AppLabelsItem',
   props: {
+    active: {
+      type: Boolean,
+      default: false,
+    },
     name: {
       type: String,
       required: true,

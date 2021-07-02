@@ -1,14 +1,21 @@
 <template>
   <app-card-section-header title-slug="labels" @click="showDialog" />
   <q-list dense>
-    <app-labels-item
+    <router-link
       v-for="label in labels"
       :key="label.name"
-      :name="label.name"
-      :color="label.color"
-      @edit="onEdit"
-      @delete="onDelete"
-    />
+      :to="`/labels/${label.name}`"
+      v-slot="{isActive}"
+      style="color:inherit;text-decoration:none;"
+    >
+      <app-labels-item
+        :active="isActive"
+        :name="label.name"
+        :color="label.color"
+        @edit="onEdit"
+        @delete="onDelete"
+      />
+    </router-link>
   </q-list>
   <app-dialog-add-group
     v-if="visibleDialog"

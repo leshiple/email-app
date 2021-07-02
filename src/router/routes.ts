@@ -15,6 +15,10 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/Starred.vue'),
           },
           {
+            path: 'labels/:label',
+            component: () => import('src/pages/Label.vue'),
+          },
+          {
             path: ':folder',
             component: () => import('src/pages/Folder.vue'),
           },

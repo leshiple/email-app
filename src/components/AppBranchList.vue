@@ -3,7 +3,7 @@
     <router-link
       v-for="branch in branches"
       :key="branch.id"
-      :to="`/${currentFolder}/${branch.id}`"
+      :to="`/${parent}/${branch.id}`"
       style="color:inherit;text-decoration:none;"
     >
       <app-branch-list-item
@@ -39,7 +39,7 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       required: true,
     },
-    currentFolder: {
+    parent: {
       type: String,
       required: true,
     },

@@ -42,6 +42,19 @@ const getters: GetterTree<IBranchState, IRootState> = {
         return acc;
       }, []));
   },
+  byLabel(state, _childGetters, _rootState, rootGetters) {
+    return (label: string) => (
+      state.branches.reduce((acc: IBranchWithLabels[], branch: IBranch) => {
+        const hasLabel = branch.labels.includes(label);
+        if (hasLabel) {
+          acc.push({
+            ...branch,
+          labels: branch.labels.map((label) => rootGetters['labels/byName'](label)), // eslint-disable-line
+          });
+        }
+        return acc;
+      }, []));
+  },
 };
 
 export default getters;
