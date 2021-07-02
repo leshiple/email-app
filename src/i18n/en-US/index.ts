@@ -12,6 +12,7 @@ export default {
   addLabel: 'Add label',
   editLabel: 'Edit label',
   chooseColor: 'Choose color',
+  empty: 'Empty',
   all: 'All',
   noOne: 'No one',
   read: 'Read',

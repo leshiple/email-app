@@ -17,11 +17,13 @@
   </app-toolbar>
   <q-separator inset class="q-mb-md" />
   <app-branch-list
+    v-if="branches.length"
     v-model:selected="selected"
     :current-folder="folder"
     :branches="branches"
     @toggle-check-item="onToggleCheckBranch"
   />
+  <div v-else class="q-pa-md text-center text-h5 text-grey-6">{{$t('empty')}}</div>
 </template>
 
 <script lang="ts">
