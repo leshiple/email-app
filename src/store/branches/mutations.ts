@@ -22,7 +22,7 @@ const mutation: MutationTree<IBranchState> = {
   [TYPES.ADD](state: IBranchState, branch: IBranch) {
     state.branches.push(branch);
   },
-  [TYPES.DELETE](state: IBranchState, ids: string) {
+  [TYPES.DELETE](state: IBranchState, ids: string[]) {
     state.branches = state.branches.filter((branch) => !ids.includes(branch.id));
   },
   [TYPES.SET_FOLDER](state: IBranchState, { branchesIds, folderName }: IPayloadSetFolder) {
