@@ -3,7 +3,6 @@ export default {
   folders: 'Папки',
   inbox: 'Входящие',
   starred: 'Отмеченные',
-  draft: 'Draft',
   sent: 'Отправленные',
   trash: 'Корзина',
   labels: 'Ярлыки',

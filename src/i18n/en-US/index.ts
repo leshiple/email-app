@@ -3,7 +3,6 @@ export default {
   folders: 'Folders',
   inbox: 'Inbox',
   starred: 'Starred',
-  draft: 'Draft',
   sent: 'Sent mail',
   trash: 'Trash',
   labels: 'Labels',

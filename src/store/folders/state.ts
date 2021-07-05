@@ -19,11 +19,6 @@ function state(): IFoldersState {
         type: 'system',
       },
       {
-        slug: 'draft',
-        icon: 'drafts',
-        type: 'system',
-      },
-      {
         slug: 'sent',
         icon: 'send',
         type: 'system',
