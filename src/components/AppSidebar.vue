@@ -13,6 +13,7 @@ import { useRouter } from 'vue-router';
 import AppCompose from 'src/components/AppCompose.vue';
 import AppFolders from 'src/components/AppFolders.vue';
 import AppLabels from 'src/components/AppLabels.vue';
+import { INBOX_FOLDER } from 'src/constants';
 import { IDeleteFolder } from 'src/types/Folders.d';
 
 export default defineComponent({
@@ -32,7 +33,7 @@ export default defineComponent({
 
     const onDeleteFolder = async (folder: string) => {
       deleteFolder(folder);
-      await router.push({ path: '/inbox' });
+      await router.push({ path: `/${INBOX_FOLDER}` });
     };
 
     return {

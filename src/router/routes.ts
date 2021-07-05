@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import { INBOX_FOLDER, STARRED, SENT_FOLDER } from 'src/constants';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -8,14 +9,14 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         component: () => import('pages/Index.vue'),
-        redirect: '/inbox',
+        redirect: `/${INBOX_FOLDER}`,
         children: [
           {
-            path: 'starred',
+            path: STARRED,
             component: () => import('src/pages/Starred.vue'),
           },
           {
-            path: 'sent',
+            path: SENT_FOLDER,
             component: () => import('src/pages/Sent.vue'),
           },
           {

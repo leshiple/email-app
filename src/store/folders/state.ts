@@ -1,4 +1,6 @@
-import { INBOX_FOLDER, STARRED, TRASH_FOLDER } from 'src/constants';
+import {
+  INBOX_FOLDER, STARRED, SENT_FOLDER, TRASH_FOLDER,
+} from 'src/constants';
 import { IFolder } from 'src/types/Folders.d';
 
 export interface IFoldersState {
@@ -19,7 +21,7 @@ function state(): IFoldersState {
         type: 'system',
       },
       {
-        slug: 'sent',
+        slug: SENT_FOLDER,
         icon: 'send',
         type: 'system',
       },
