@@ -26,6 +26,9 @@ const actions: ActionTree<IBranchState, IRootState> = {
   toggleRead({ commit }, payload) {
     commit(TYPES.TOGGLE_READ, payload);
   },
+  setCurrentBranchId({ commit }, id: string) {
+    commit(TYPES.SET_CURRENT_BRANCH_ID, id);
+  },
 };
 
 export default actions;

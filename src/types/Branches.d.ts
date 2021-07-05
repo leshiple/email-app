@@ -6,8 +6,8 @@ export interface IBranchBase {
   lastMessageAuthor: string,
   subject: string,
   count: number,
-  date: string,
-  folder: string,
+  date: number,
+  folder?: string,
   starred: boolean,
   read: boolean,
 }

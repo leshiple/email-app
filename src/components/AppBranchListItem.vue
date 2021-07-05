@@ -44,7 +44,7 @@
         <q-item-label>{{ subject }}</q-item-label>
       </q-item-section>
       <q-item-section side>
-        <q-item-label class="text-dark">{{ date }}</q-item-label>
+        <q-item-label class="text-dark">{{ formatedDate }}</q-item-label>
       </q-item-section>
     </q-item>
 </template>
@@ -80,7 +80,7 @@ export default defineComponent({
       required: true,
     },
     date: {
-      type: String,
+      type: Number,
       required: true,
     },
     labels: {
@@ -111,12 +111,14 @@ export default defineComponent({
     });
 
     const authorName = useAuthorName(props.lastMessageAuthor);
+    const formatedDate = computed(() => new Intl.DateTimeFormat('en-US').format(props.date));
 
     const isActive = computed(() => props.modelValue.indexOf(props.id) !== -1);
 
     return {
       authorName,
       checked,
+      formatedDate,
       isActive,
     };
   },

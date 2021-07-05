@@ -1,6 +1,6 @@
 <template>
   <q-card style="width: 230px;flex-shrink:0" class="q-pb-md">
-    <app-compose />
+    <app-compose :current-branch="currentBranch" />
     <app-folders :folders="folders" :add="addFolder" :edit="editFolder" :delete="onDeleteFolder" />
     <q-separator inset class="q-mb-md" />
     <app-labels :labels="labels" :add="addLabel" :edit="editLabel" :delete="deleteLabel" />
@@ -28,6 +28,7 @@ export default defineComponent({
     const addLabel = inject('addLabel');
     const editLabel = inject('editLabel');
     const deleteLabel = inject('deleteLabel');
+    const currentBranch = inject('currentBranch');
 
     const onDeleteFolder = async (folder: string) => {
       deleteFolder(folder);
@@ -43,6 +44,7 @@ export default defineComponent({
       addLabel,
       editLabel,
       deleteLabel,
+      currentBranch,
     };
   },
 });

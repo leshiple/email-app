@@ -30,6 +30,8 @@ export default {
   folderExist: 'Folder with this name is exist',
   subject: 'Subject',
   me: 'Me',
+  newMessage: 'New message',
+  send: 'Send',
   pink: 'Pink',
   red: 'Red',
   yellow: 'Yellow',

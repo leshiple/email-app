@@ -16,6 +16,7 @@ export const TYPES = {
   ADD_LABEL: 'ADD_LABEL',
   DELETE_LABEL: 'DELETE_LABEL',
   TOGGLE_READ: 'TOGGLE_READ',
+  SET_CURRENT_BRANCH_ID: 'SET_CURRENT_BRANCH_ID',
 };
 
 const mutation: MutationTree<IBranchState> = {
@@ -71,6 +72,9 @@ const mutation: MutationTree<IBranchState> = {
         branch.read = read;
       }
     });
+  },
+  [TYPES.SET_CURRENT_BRANCH_ID](state: IBranchState, id: string) {
+    state.currentBranchId = id;
   },
 };
 

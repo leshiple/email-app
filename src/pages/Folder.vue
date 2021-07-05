@@ -1,5 +1,5 @@
 <template>
-  <app-folder :parent="folder" :branches="branches"/>
+  <app-folder :group="folder" :branches="branches"/>
 </template>
 
 <script lang="ts">

@@ -15,6 +15,10 @@ const routes: RouteRecordRaw[] = [
             component: () => import('src/pages/Starred.vue'),
           },
           {
+            path: 'sent',
+            component: () => import('src/pages/Sent.vue'),
+          },
+          {
             path: 'labels/:label',
             component: () => import('src/pages/Label.vue'),
           },

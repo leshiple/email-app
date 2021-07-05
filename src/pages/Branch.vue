@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import {
-  defineComponent, inject, computed,
+  defineComponent, inject, computed, onBeforeMount, onUnmounted,
 } from 'vue';
 import { useStore } from 'vuex';
 import { storeKey } from 'src/store';
@@ -54,14 +54,23 @@ export default defineComponent({
     const allLabels = inject('labels');
     const branchById = inject('branchById') as IGetBranchById;
 
-    const branch = computed(() => {
-      const branchId = route.params.branch.toString();
-      return branchById(branchId);
-    });
+    const branchId = route.params.branch.toString();
+
+    const branch = computed(() => branchById(branchId));
 
     const labels = computed(() => branch.value?.labels);
 
+    const mails = computed(() => branch.value?.mails);
+
     const toggleReadBranches = inject('toggleReadBranches') as IToggleReadBranches;
+
+    onBeforeMount(async () => {
+      await store.dispatch('branches/setCurrentBranchId', branchId);
+    });
+
+    onUnmounted(async () => {
+      await store.dispatch('branches/setCurrentBranchId', '');
+    });
 
     if (!branch.value.read) {
       toggleReadBranches({
@@ -125,7 +134,7 @@ export default defineComponent({
       allLabels,
       labels,
       subject: branch.value.subject,
-      mails: branch.value.mails,
+      mails,
       onChangeFolder,
       onChangeLabel,
       onToggleStarred,

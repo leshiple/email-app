@@ -9,7 +9,7 @@
 
       <q-item-section>
         <q-item-label>{{authorName}}</q-item-label>
-        <q-item-label caption>{{date}}</q-item-label>
+        <q-item-label caption>{{formatedDate}}</q-item-label>
       </q-item-section>
     </q-item>
     <q-separator inset />
@@ -31,7 +31,7 @@ export default defineComponent({
       required: true,
     },
     date: {
-      type: String,
+      type: Number,
       required: true,
     },
     text: {
@@ -42,10 +42,12 @@ export default defineComponent({
   setup(props) {
     const authorName = useAuthorName(props.author);
     const CSSClass = computed(() => (props.author === 'me' ? 'bg-grey-2 q-ml-auto' : 'bg-blue-grey-2'));
+    const formatedDate = computed(() => new Intl.DateTimeFormat('en-US').format(props.date));
 
     return {
       authorName,
       CSSClass,
+      formatedDate,
     };
   },
 });

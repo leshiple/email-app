@@ -20,6 +20,7 @@ import { ILabel, IPayloadEditLabel } from 'src/types/Labels.d';
 import {
   IPayloadSetFolder, IPayloadToggleStarred, IPayloadToggleLabelFromBranches, IPayloadToggleRead,
 } from 'src/types/Branches.d';
+import { IPayloadAddMail } from 'src/types/Mails.d';
 
 export default defineComponent({
   name: 'PageIndex',
@@ -50,7 +51,9 @@ export default defineComponent({
     provide('branchesByFolder', store.getters['branches/byFolder']); //eslint-disable-line
     provide('branchesByLabel', store.getters['branches/byLabel']); //eslint-disable-line
     provide('branchById', store.getters['branches/byId']); //eslint-disable-line
+    provide('currentBranch', computed(() => store.getters['branches/currentBranch'])); //eslint-disable-line
 
+    provide('addMail', (mail: IPayloadAddMail) => store.dispatch('mails/add', mail));
   },
 });
 </script>

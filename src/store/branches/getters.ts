@@ -15,7 +15,8 @@ const getters: GetterTree<IBranchState, IRootState> = {
         });
       }
       return acc;
-    }, []);
+    }, [])
+      .sort((a, b) => (a.date > b.date ? -1 : 1));
   },
   byId(state, _childGetters, _rootState, rootGetters) {
     return (id: string) => {
@@ -40,7 +41,8 @@ const getters: GetterTree<IBranchState, IRootState> = {
           });
         }
         return acc;
-      }, []));
+      }, []))
+      .sort((a, b) => (a.date > b.date ? -1 : 1));
   },
   byLabel(state, _childGetters, _rootState, rootGetters) {
     return (label: string) => (
@@ -53,7 +55,24 @@ const getters: GetterTree<IBranchState, IRootState> = {
           });
         }
         return acc;
-      }, []));
+      }, []))
+      .sort((a, b) => (a.date > b.date ? -1 : 1));
+  },
+  whereLastAuthoreIsMe(state, _childGetters, _rootState, rootGetters) {
+    return state.branches.reduce((acc: IBranchWithLabels[], branch: IBranch) => {
+      const isLastAuthorIsMe = branch.lastMessageAuthor === 'me';
+      if (isLastAuthorIsMe) {
+        acc.push({
+          ...branch,
+        labels: branch.labels.map((label) => rootGetters['labels/byName'](label)), // eslint-disable-line
+        });
+      }
+      return acc;
+    }, [])
+      .sort((a, b) => (a.date > b.date ? -1 : 1));
+  },
+  currentBranch(state, childGetters) {
+    return childGetters.byId(state.currentBranchId); // eslint-disable-line
   },
 };
 
