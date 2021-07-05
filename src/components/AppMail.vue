@@ -22,6 +22,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import useAuthorName from 'src/composables/useAuthorName';
+import useDate from 'src/composables/useDate';
 
 export default defineComponent({
   name: 'AppMail',
@@ -42,7 +43,8 @@ export default defineComponent({
   setup(props) {
     const authorName = useAuthorName(props.author);
     const CSSClass = computed(() => (props.author === 'me' ? 'bg-grey-2 q-ml-auto' : 'bg-blue-grey-2'));
-    const formatedDate = computed(() => new Intl.DateTimeFormat('en-US').format(props.date));
+    const { formatDate } = useDate();
+    const formatedDate = formatDate(props.date);
 
     return {
       authorName,

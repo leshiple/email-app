@@ -54,6 +54,7 @@ import {
   defineComponent, computed, PropType,
 } from 'vue';
 import useAuthorName from 'src/composables/useAuthorName';
+import useDate from 'src/composables/useDate';
 import { ILabel } from 'src/types/Labels';
 
 export default defineComponent({
@@ -111,7 +112,8 @@ export default defineComponent({
     });
 
     const authorName = useAuthorName(props.lastMessageAuthor);
-    const formatedDate = computed(() => new Intl.DateTimeFormat('en-US').format(props.date));
+    const { formatDate } = useDate();
+    const formatedDate = formatDate(props.date);
 
     const isActive = computed(() => props.modelValue.indexOf(props.id) !== -1);
 
