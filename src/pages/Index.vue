@@ -1,6 +1,9 @@
 <template>
   <q-page class="q-px-xl q-py-lg bg-grey-2">
-    <h1 class="text-h5">Email app</h1>
+    <div class="flex items-center">
+      <app-language-switcher class="q-mr-sm" />
+      <h1 class="text-h5">Email app</h1>
+    </div>
     <div class="row items-start q-gutter-md no-wrap">
       <app-sidebar />
       <q-card style="flex-grow: 1">
@@ -14,6 +17,7 @@
 import { defineComponent, computed, provide } from 'vue';
 import { useStore } from 'vuex';
 import { storeKey } from 'src/store';
+import AppLanguageSwitcher from 'src/components/AppLanguageSwitcher.vue';
 import AppSidebar from 'src/components/AppSidebar.vue';
 import { IPayloadEditFolder } from 'src/types/Folders.d';
 import { ILabel, IPayloadEditLabel } from 'src/types/Labels.d';
@@ -24,7 +28,10 @@ import { IPayloadAddMail } from 'src/types/Mails.d';
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { AppSidebar },
+  components: {
+    AppLanguageSwitcher,
+    AppSidebar,
+  },
   setup() {
     const store = useStore(storeKey);
 
