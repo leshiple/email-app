@@ -21,6 +21,10 @@ const actions: ActionTree<IMailsState, IRootState> = {
         read: true,
         labels: [],
       }, { root: true });
+    } else {
+      await dispatch('branches/incrementCountBranch', branch, {
+        root: true,
+      });
     }
 
     commit(TYPES.ADD, {

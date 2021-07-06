@@ -57,7 +57,7 @@ function state(): IBranchState {
         id: 'branch-5',
         lastMessageAuthor: 'me',
         subject: 'Profound systemic alliance',
-        count: 1,
+        count: 2,
         date: 1623815179589,
         labels: [],
         starred: false,

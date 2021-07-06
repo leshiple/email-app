@@ -29,6 +29,9 @@ const actions: ActionTree<IBranchState, IRootState> = {
   setCurrentBranchId({ commit }, id: string) {
     commit(TYPES.SET_CURRENT_BRANCH_ID, id);
   },
+  incrementCountBranch({ commit }, id: string) {
+    commit(TYPES.INCREMENT_COUNT, id);
+  },
 };
 
 export default actions;

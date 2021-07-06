@@ -17,6 +17,7 @@ export const TYPES = {
   DELETE_LABEL: 'DELETE_LABEL',
   TOGGLE_READ: 'TOGGLE_READ',
   SET_CURRENT_BRANCH_ID: 'SET_CURRENT_BRANCH_ID',
+  INCREMENT_COUNT: 'INCREMENT_COUNT',
 };
 
 const mutation: MutationTree<IBranchState> = {
@@ -75,6 +76,13 @@ const mutation: MutationTree<IBranchState> = {
   },
   [TYPES.SET_CURRENT_BRANCH_ID](state: IBranchState, id: string) {
     state.currentBranchId = id;
+  },
+  [TYPES.INCREMENT_COUNT](state: IBranchState, id: string) {
+    const currentBranch = state.branches.find((branch) => branch.id === id);
+
+    if (currentBranch) {
+      currentBranch.count += 1;
+    }
   },
 };
 
